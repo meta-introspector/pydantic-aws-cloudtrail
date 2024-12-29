@@ -1,5 +1,5 @@
 import yaml
-from pydantic import BaseModel
+#from pydantic import BaseModel
 import pydantic_aws_cloudtrail.aws.cloudtrail.events
 
 def main():

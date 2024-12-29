@@ -1,6 +1,12 @@
-from datamodel_code_generator import (    DataModelType,
-    InputFileType,
-    generate)
+import glob
+# To read JSON data from log files in a directory using Python, you can use the following code snippet:
+import json
+from datetime import datetime
+from typing import List, Optional
+
+from datamodel_code_generator import DataModelType, InputFileType, generate
+from pydantic import BaseModel, ConfigDict, Field
+
 SEP="|"
 #from itertools import combinations
 # # in python
@@ -21,16 +27,11 @@ SEP="|"
 
 #             CloudTrailEvent is a nested json
 
-# To read JSON data from log files in a directory using Python, you can use the following code snippet:
-import json
-import glob
+
 log_files = glob.glob('logs/*.log')
 all_events = []
 seen = {}
 
-from pydantic import BaseModel, Field, create_model,ConfigDict
-from datetime import datetime
-from typing import List, Optional
 
 # from https://github.com/aws-samples/amazon-dynamodb-pitr-table-sync/blob/43b0f85f1a6bb07b17fe7f20437eb9834601661e/src/model/aws/dynamodb/dynamodb_pitr_notification.py#L111
 
@@ -1233,7 +1234,8 @@ def process1(v,path):
                         "AWSServiceRoleForResourceExplorer",
                         "github",
                         "ssm-swarms-role"]:
-            interesting =1
+            #interesting =1
+            pass
         elif (path[4] in ["accountId","arn","principalId","type","userName"]):
               pass
         
@@ -1267,7 +1269,7 @@ def process1(v,path):
             path2= path.copy()
             path2.extend([k2])
             qk2 = SEP.join(path2)
-            vt2 = type(v2)
+            #vt2 = type(v2)
             if qk2 not in seen:
 
                 seen[qk2] =1
@@ -1366,10 +1368,6 @@ for k in report:
 # 3. Any parsed events are collected in the `all_events` list.
 # 4. Handle JSON decoding errors gracefully.
 
-
-
-#                 import boto3, argparse, json
-# from datetime import datetime, timedelta
 
 # # Parse command line arguments
 # parser = argparse.ArgumentParser(description='Generate an IAM policy based on CloudTrail events.')
