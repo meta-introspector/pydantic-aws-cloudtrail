@@ -7,13 +7,15 @@ readme = "README.md"
 packages = [{include = "pydantic_aws_cloudtrail", from = "src"}]
 
 [tool.poetry.scripts]
-pydantic-aws-cloudtrail = "pydantic_aws_cloudtrail.__main__:main"
+pydantic-aws-cloudtrail-generate-schema = "pydantic_aws_cloudtrail.__main__:main"
+pct-fetch = "pydantic_aws_cloudtrail.fetch:main"
 
 
 [tool.poetry.dependencies]
 python = "^3.10"
 pydantic = "^2.10.4"
 pyyaml = "^6.0.2"
+boto3 = "^1.35.90"
 
 
 [build-system]
