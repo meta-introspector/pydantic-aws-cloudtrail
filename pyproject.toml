@@ -4,11 +4,15 @@ version = "0.1.0"
 description = ""
 authors = ["Mike DuPont <jmikedupont2@gmail.com>"]
 readme = "README.md"
-packages = [{include = "pydantic_aws_cloudtrail", from = "src"}]
+packages = [
+	 {include = "pydantic_aws_cloudtrail", from = "src"},
+	 {include = "pydantic_metamodel", from = "src"}
+]
 
 [tool.poetry.scripts]
 pydantic-aws-cloudtrail-generate-schema = "pydantic_aws_cloudtrail.__main__:main"
 pct-fetch = "pydantic_aws_cloudtrail.fetch:main"
+pmm-init = "pydantic_metamodel.model.meta.__init__:main"
 
 
 [tool.poetry.dependencies]

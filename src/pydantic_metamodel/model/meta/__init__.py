@@ -25,22 +25,21 @@ now we can translate from elements of the quasi meta model into executable types
 lets add the self proving and self carrying proofs.
 """
 
-from typing import Any, Dict, List, Union#, Type
+from typing import Any, Dict, List, Union, Optional, Tuple
+#, Type
+from pydantic import BaseModel, Field, RootModel
 
-class Tuple:
-    """an instance of a given type"""
-    value: List[Any]
 
-class TypeName:
+class TypeName(BaseModel):
     """an instance of a given type"""
     name: str
     type: type
 
-class TypeInstance:
+class TypeInstance(BaseModel):
     """an instance of a given type"""
     type_name: TypeName
 
-class CountType:
+class CountType(BaseModel):
     """a counter
 
     """
@@ -48,39 +47,39 @@ class CountType:
     def add(self) :
         self.value = self.value +1
 
-class SumType:
+class SumType(BaseModel):
     """an instance of a given type"""
     sum: CountType
 
-class TypeInstanceStatisticsTuple:
+class TypeInstanceStatisticsTuple(BaseModel):
     """an type has a given sum as a pair"""
     count: SumType
     type_name: TypeName
 
-class TypePairInstanceStatisticsTuple:
+class TypePairInstanceStatisticsTuple(BaseModel):
     """two types has a given sum as a triple"""
     count: SumType
     type_name_a: TypeName
     type_name_b: TypeName
 
-class TypeTripleInstanceStatisticsTuple:
+class TypeTripleInstanceStatisticsTuple(BaseModel):
     """three types has a given sum as a quad"""
     count: SumType
     type_name_a: TypeName
     type_name_b: TypeName
     type_name_c: TypeName
     
-class TypeInstanceStatistics:
+class TypeInstanceStatistics(BaseModel):
     """an type has a given sum via a dictonary"""
     stats: Dict[TypeName, SumType]
     
-class TypeName:
+class TypeName(BaseModel):
     """The typename mapped from types to values, creating a quasi dependant type.
     so instances of features can be pointers to classes themselves via the type name.
     """
     type_name: str
     
-class PropertyType:
+class PropertyType(BaseModel):
     """Properties can be seen as generic fields.
     we can have one property for each feature,
     representing the space and time values the neurons take when tasked with carrying that feature.
@@ -92,37 +91,39 @@ class PropertyType:
     alias : str
     
 
-class ModelElement:
+class ModelElement(BaseModel):
     name: str
     properties: Dict[str, PropertyType]
     sub_elements: List['ModelElement'] = None
 
-class MetaModel:
-    models = Dict[ModelElement]
+class MetaModel(BaseModel):
+    models :Dict[str,ModelElement]
 
 
-class MetaModelStatistics:
+class MetaModelStatistics(BaseModel):
     """Statistics for the MetaModel, summarizing the count of each model."""
-    model_counts: Dict[str, int]  # Maps model names to their respective counts
-    total_models: int  # Total number of models in the MetaModel
+    model_counts: Dict[str, int] = {}  # Maps model names to their respective counts
+    total_models: int =0  # Total number of models in the MetaModel
 
+class Point(BaseModel):
+    location: Tuple [float, float]
 
-class Event:
+class Event(BaseModel):
     """Represents an event within the model, containing features and metadata."""
-    id: str  # Unique identifier (could be a large prime for uniqueness)
+    aid: str  # Unique identifier (could be a large prime for uniqueness)
     timestamp: str  # ISO formatted timestamp
-    location: Union[Tuple[float, float], str]  # Coordinates or description
+    location: Union[Point, str]  # Coordinates or description
     features: Dict[str, Any]  # Features representing the flattened characteristics of the event
 
-class FeatureSet:
+class FeatureSet(BaseModel):
     """A collection of events flattened into a set of features."""
     events: List[Event]  # List of events
     unique_features: Dict[str, int]  # Dictionary mapping feature names to their occurrence/counts
 
-class Manifold:
+class Manifold(BaseModel):
     """Represents the manifold of spacetime as influenced by events and features."""
     events: List[Event]
-    dimensions: Tuple[int, int, int]  # Spatial dimensions, e.g., (x, y, z)
+    dimensions: Tuple [int, int, int]  # Spatial dimensions, e.g., (x, y, z)
     model_statistics: MetaModelStatistics  # Statistics about the model elements and events
 
     def flatten_events(self) -> FeatureSet:
@@ -131,7 +132,7 @@ class Manifold:
         pass
 
 
-class ComplianceAudit:
+class ComplianceAudit(BaseModel):
     """Tracks compliance of events within the system."""
     events: List[Event]  # Events that have been audited
     outstanding_events: List[Event]  # Events awaiting processing
@@ -147,7 +148,7 @@ class ComplianceAudit:
         # Implementation for compliance verification
         return self.compliance_status
 
-class ZeroKnowledgeProof:
+class ZeroKnowledgeProof(BaseModel):
     """Represents a zero-knowledge proof structure based on existing knowledge."""
     proven_events: List[Event]  # Events that have been proven
     challenge: str  # A challenge to prove without revealing information
@@ -163,7 +164,7 @@ class ZeroKnowledgeProof:
         # Implementation for proof verification
         return True  # Placeholder for actual logic
 
-class EventProcessor:
+class EventProcessor(BaseModel):
     """Processes events and manages their lifecycle within the system."""
     events: List[Event]  # List of current events
     compliance_audit: ComplianceAudit  # Compliance management for events
@@ -187,12 +188,12 @@ class EventProcessor:
             # Additional metrics can be added here
         }
 
-class Config:
+class Config(BaseModel):
     """Configuration for managing secrets and sessions."""
     secrets: Dict[str, str]
     sessions: Dict[str, Any]
 
-class VectorStore:
+class VectorStore(BaseModel):
     """Basic vector store implementation."""
     vectors: Dict[str, List[float]]
 
@@ -202,10 +203,10 @@ class VectorStore:
     def get_vector(self, key: str) -> List[float]:
         return self.vectors.get(key, [])
 
-class FeedbackLoop:
+class FeedbackLoop(BaseModel):
     """Implements feedback for event processing and audit outcomes."""
     event_processor: EventProcessor  # Reference to the event processor
-    feedback_logs: List[str]  # Logs for feedback and evaluations
+    feedback_logs: List[str] = [] # Logs for feedback and evaluations
 
     def evaluate_with_chatgpt(self, event: Event) -> str:
         """Send event data to ChatGPT for evaluation and receive feedback."""
@@ -226,7 +227,7 @@ class FeedbackLoop:
         # Implementation to log the audit trail
         pass
 
-class QuasiMetaModel:
+class QuasiMetaModel(BaseModel):
     """Represents the overarching structure integrating events, auditing, and feedback."""
     manifold: Manifold  # Manifold representation of events and dimensions
     event_processor: EventProcessor  # Handles event processing
@@ -249,8 +250,7 @@ class QuasiMetaModel:
         }
 
 
-
-class SelfDescribingStructure:
+class SelfDescribingStructure(BaseModel):
     """Encapsulates self-describing properties and behavior of the quasi meta model."""
     meta_model: QuasiMetaModel  # Reference to the main meta model
 
@@ -276,9 +276,57 @@ class SelfDescribingStructure:
         self.self_reflect()
         print(description)  # Output the description for inspection
 
+class UserIdentity(BaseModel):
+    secret : Any
+
+class WebRequest(BaseModel):
+    #aws_region: str = Field(..., alias='awsRegion')
+    source_ip_address: str = Field(..., alias='sourceIPAddress')
+    user_agent: str = Field(..., alias='userAgent')
+    #request_parameters: Optional[RequestParameters] = Field(        ..., alias='requestParameters'    )
+    #response_elements: Optional[ResponseElements] = Field(..., alias='responseElements')
+    request_id: Optional[str] = Field(None, alias='requestID')
+
+class ModelItem(BaseModel):
+    event_version: str = Field(..., alias='eventVersion')
+    user_identity: UserIdentity = Field(..., alias='userIdentity')
+    event_time: str = Field(..., alias='eventTime')
+    event_source: str = Field(..., alias='eventSource')
+    event_name: str = Field(..., alias='eventName')
+    event_id: str = Field(..., alias='eventID')
+    read_only: bool = Field(..., alias='readOnly')
+    event_type: str = Field(..., alias='eventType')
+#    management_event: bool = Field(..., alias='managementEvent')
+#    recipient_account_id: str = Field(..., alias='recipientAccountId')
+    event_category: str = Field(..., alias='eventCategory')
+#    tls_details: Optional[TlsDetails] = Field(None, alias='tlsDetails')
+    error_code: Optional[str] = Field(None, alias='errorCode')
+    error_message: Optional[str] = Field(None, alias='errorMessage')
+    #resources: Optional[List[Resource]] = None
+    shared_event_id: Optional[str] = Field(None, alias='sharedEventID')
+#    session_credential_from_console: Optional[str] = Field(
+#        None, alias='sessionCredentialFromConsole'
+#    )
+#    api_version: Optional[str] = Field(None, alias='apiVersion')
+#    additional_event_data: Optional[AdditionalEventData] = Field(
+#        None, alias='additionalEventData'
+#    )
+#    vpc_endpoint_id: Optional[str] = Field(None, alias='vpcEndpointId')
+#    vpc_endpoint_account_id: Optional[str] = Field(None, alias='vpcEndpointAccountId')
+#    service_event_details: Optional[ServiceEventDetails] = Field(
+#        None, alias='serviceEventDetails'
+#    )
+
+        
+class Model(RootModel[List[ModelItem]]):
+    root: List[ModelItem]
+
 def main():
     # Initialize the config and vector store
-    config = Config(secrets={"chatgpt": "secret_gpt", "bing": "secret_bing", "copilot": "secret_copilot"}, sessions={})
+    config = Config(
+        secrets={"chatgpt": "secret_gpt", "bing": "secret_bing", "copilot": "secret_copilot"},
+        sessions={}
+    )
     vector_store = VectorStore(vectors={})
 
     # Initialize the event processor and feedback loop
