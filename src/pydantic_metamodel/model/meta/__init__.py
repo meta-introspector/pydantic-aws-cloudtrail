@@ -23,63 +23,41 @@ now we can translate from elements of the quasi meta model into executable types
 lets add the self proving and self carrying proofs.
 """
 
-from typing import Any, Dict, List, Union, Type
+from typing import Any, Dict, List, Union, Tuple
+
+class TypeStatisticsTuple:
+    """A flexible statistics tuple for types."""
+    count: SumType
+    type_names: Tuple[TypeName, ...]
+
+class Statistics:
+    """General statistics for types and models."""
+    stats: Dict[str, SumType]
+    total: int
 
 class TypeInstance:
-    """an instance of a given type"""
+    """An instance of a given type"""
     type_name: TypeName
 
 class CountType:
-    """a counter
-
-    """
-    value: int =0
-    def add(self) :
-        self.value = self.value +1
+    """A counter"""
+    value: int = 0
+    def add(self):
+        self.value += 1
 
 class SumType:
-    """an instance of a given type"""
+    """An instance of a given type"""
     sum: CountType
 
-class TypeInstanceStatisticsTuple:
-    """an type has a given sum as a pair"""
-    count: SumType
-    type_name: TypeName
-
-class TypePairInstanceStatisticsTuple:
-    """two types has a given sum as a triple"""
-    count: SumType
-    type_name_a: TypeName
-    type_name_b: TypeName
-
-class TypeTripleInstanceStatisticsTuple:
-    """three types has a given sum as a quad"""
-    count: SumType
-    type_name_a: TypeName
-    type_name_b: TypeName
-    type_name_c: TypeName
-    
-class TypeInstanceStatistics:
-    """an type has a given sum via a dictonary"""
-    stats: Dict[TypeName, SumType]
-    
 class TypeName:
-    """The typename mapped from types to values, creating a quasi dependant type.
-    so instances of features can be pointers to classes themselves via the type name.
-    """
+    """The typename mapped from types to values, creating a quasi dependent type."""
     type_name: str
-    
+
 class PropertyType:
-    """Properties can be seen as generic fields.
-    we can have one property for each feature,
-    representing the space and time values the neurons take when tasked with carrying that feature.
-    the list of features is mapped from types to values, creating a quasi dependant type.
-    so instances of features can be pointers to classes themselves via the type name.
-    """
+    """Properties can be seen as generic fields."""
     type_name: TypeName
     is_required: bool
-    alias : str
-    
+    alias: str
 
 class ModelElement:
     name: str
@@ -87,14 +65,7 @@ class ModelElement:
     sub_elements: List['ModelElement'] = None
 
 class MetaModel:
-    models = Dict[ModelElement]
-
-
-class MetaModelStatistics:
-    """Statistics for the MetaModel, summarizing the count of each model."""
-    model_counts: Dict[str, int]  # Maps model names to their respective counts
-    total_models: int  # Total number of models in the MetaModel
-
+    models: Dict[str, ModelElement]
 
 class Event:
     """Represents an event within the model, containing features and metadata."""
@@ -112,13 +83,12 @@ class Manifold:
     """Represents the manifold of spacetime as influenced by events and features."""
     events: List[Event]
     dimensions: Tuple[int, int, int]  # Spatial dimensions, e.g., (x, y, z)
-    model_statistics: MetaModelStatistics  # Statistics about the model elements and events
+    model_statistics: Statistics  # Statistics about the model elements and events
 
     def flatten_events(self) -> FeatureSet:
         """Flatten events into a set of features."""
         # Implementation to extract features from events and return a FeatureSet
         pass
-
 
 class ComplianceAudit:
     """Tracks compliance of events within the system."""
@@ -156,7 +126,7 @@ class EventProcessor:
     """Processes events and manages their lifecycle within the system."""
     events: List[Event]  # List of current events
     compliance_audit: ComplianceAudit  # Compliance management for events
-    
+
     def add_event(self, event: Event) -> None:
         """Add a new event and update compliance audit."""
         self.events.append(event)
@@ -176,17 +146,48 @@ class EventProcessor:
             # Additional metrics can be added here
         }
 
+class Config:
+    """Configuration for managing secrets and sessions."""
+    secrets: Dict[str, str]
+    sessions: Dict[str, Any]
 
+class VectorStore:
+    """Basic vector store implementation."""
+    vectors: Dict[str, List[float]]
+
+    def add_vector(self, key: str, vector: List[float]) -> None:
+        self.vectors[key] = vector
+
+    def get_vector(self, key: str) -> List[float]:
+        return self.vectors.get(key, [])
 
 class FeedbackLoop:
     """Implements feedback for event processing and audit outcomes."""
     event_processor: EventProcessor  # Reference to the event processor
     feedback_logs: List[str]  # Logs for feedback and evaluations
+    config: Config  # Configuration for secrets and sessions
+    vector_store: VectorStore  # Vector store for additional functionalities
+
+    def __init__(self, event_processor: EventProcessor, config: Config, vector_store: VectorStore):
+        self.event_processor = event_processor
+        self.config = config
+        self.vector_store = vector_store
+        self.feedback_logs = []
 
     def evaluate_with_chatgpt(self, event: Event) -> str:
         """Send event data to ChatGPT for evaluation and receive feedback."""
-        # Placeholder for interaction with ChatGPT API
+        # Placeholder for interaction with ChatGPT API using self.config.secrets
         return "Feedback from ChatGPT regarding event."
+
+    def evaluate_with_bing(self, event: Event) -> str:
+        """Send event data to Bing for evaluation and receive feedback."""
+        # Placeholder for interaction with Bing API using self.config.secrets
+        return "Feedback from Bing regarding event."
+
+    def evaluate_with_copilot(self, event: Event) -> str:
+        """Send event data to Copilot for evaluation and receive feedback."""
+        # Placeholder for interaction with Copilot API using self.config.secrets
+        return "Feedback from Copilot regarding event."
 
     def append_feedback(self, feedback: str) -> None:
         """Append feedback to the logs."""
@@ -194,8 +195,12 @@ class FeedbackLoop:
 
     def process_feedback(self, event: Event) -> None:
         """Process feedback for a specific event and log it."""
-        feedback = self.evaluate_with_chatgpt(event)
-        self.append_feedback(feedback)
+        feedback_gpt = self.evaluate_with_chatgpt(event)
+        feedback_bing = self.evaluate_with_bing(event)
+        feedback_copilot = self.evaluate_with_copilot(event)
+        self.append_feedback(feedback_gpt)
+        self.append_feedback(feedback_bing)
+        self.append_feedback(feedback_copilot)
 
     def log_audit_trail(self) -> None:
         """Log the audit trail and feedback for transparency."""
@@ -224,8 +229,6 @@ class QuasiMetaModel:
             "zero_knowledge_proofs": len(self.zero_knowledge_proof.proven_events),
         }
 
-
-
 class SelfDescribingStructure:
     """Encapsulates self-describing properties and behavior of the quasi meta model."""
     meta_model: QuasiMetaModel  # Reference to the main meta model
@@ -251,3 +254,18 @@ class SelfDescribingStructure:
         description = self.describe()
         self.self_reflect()
         print(description)  # Output the description for inspection
+
+# Initialize the config and vector store
+config = Config(secrets={"chatgpt": "secret_gpt", "bing": "secret_bing", "copilot": "secret_copilot"}, sessions={})
+vector_store = VectorStore(vectors={})
+
+# Initialize the event processor and feedback loop
+event_processor = EventProcessor(events=[], compliance_audit=ComplianceAudit(events=[], outstanding_events=[], compliance_status=True))
+feedback_loop = FeedbackLoop(event_processor=event_processor, config=config, vector_store=vector_store)
+
+# Initialize the quasi meta model and self-describing structure
+quasi_meta_model = QuasiMetaModel(manifold=Manifold(events=[], dimensions=(0, 0, 0), model_statistics=Statistics(stats={}, total=0)), event_processor=event_processor, feedback_loop=feedback_loop, zero_knowledge_proof=ZeroKnowledgeProof(proven_events=[], challenge="", response=""))
+self_describing_structure = SelfDescribingStructure(meta_model=quasi_meta_model)
+
+# Execute the self-describing process and audit cycle
+self_describing_structure.execute()
