@@ -1,0 +1,5301 @@
+Using virtualenv: /home/mdupont/.cache/pypoetry/virtualenvs/pydantic-aws-cloudtrail-l0jZN7Mx-py3.10
+$defs:
+  AdditionalEventData:
+    properties:
+      AuthenticationMethod:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Authenticationmethod
+      CipherSuite:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ciphersuite
+      LoginTo:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loginto
+      MFAUsed:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Mfaused
+      MobileVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Mobileversion
+      SignatureVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Signatureversion
+      bytesTransferredIn:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Bytestransferredin
+      bytesTransferredOut:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Bytestransferredout
+      grantId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Grantid
+      identityProviderConnectionVerificationMethod:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Identityproviderconnectionverificationmethod
+      service:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Service
+      x-amz-id-2:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: X-Amz-Id-2
+    title: AdditionalEventData
+    type: object
+  AlarmConfiguration:
+    properties:
+      alarms:
+        items: {}
+        title: Alarms
+        type: array
+      ignorePollAlarmFailure:
+        title: Ignorepollalarmfailure
+        type: boolean
+    required:
+    - ignorePollAlarmFailure
+    - alarms
+    title: AlarmConfiguration
+    type: object
+  ApplyServerSideEncryptionByDefault:
+    properties:
+      KMSMasterKeyID:
+        title: Kmsmasterkeyid
+        type: string
+      SSEAlgorithm:
+        title: Ssealgorithm
+        type: string
+    required:
+    - SSEAlgorithm
+    - KMSMasterKeyID
+    title: ApplyServerSideEncryptionByDefault
+    type: object
+  ArchitectureType:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: ArchitectureType
+    type: object
+  AssumedRoleUser:
+    properties:
+      arn:
+        title: Arn
+        type: string
+      assumedRoleId:
+        title: Assumedroleid
+        type: string
+    required:
+    - assumedRoleId
+    - arn
+    title: AssumedRoleUser
+    type: object
+  Attachment:
+    properties:
+      attachTime:
+        title: Attachtime
+        type: integer
+      attachmentId:
+        title: Attachmentid
+        type: string
+      deleteOnTermination:
+        title: Deleteontermination
+        type: boolean
+      deviceIndex:
+        title: Deviceindex
+        type: integer
+      networkCardIndex:
+        title: Networkcardindex
+        type: integer
+      status:
+        title: Status
+        type: string
+    required:
+    - attachmentId
+    - deviceIndex
+    - networkCardIndex
+    - status
+    - attachTime
+    - deleteOnTermination
+    title: Attachment
+    type: object
+  Attributes:
+    properties:
+      creationDate:
+        title: Creationdate
+        type: string
+      mfaAuthenticated:
+        title: Mfaauthenticated
+        type: string
+    required:
+    - creationDate
+    - mfaAuthenticated
+    title: Attributes
+    type: object
+  BlockDeviceMapping:
+    properties:
+      DeviceName:
+        title: Devicename
+        type: string
+      Ebs:
+        $ref: '#/$defs/Ebs'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Ebs
+    - tag
+    - DeviceName
+    title: BlockDeviceMapping
+    type: object
+  BlockDeviceMapping1:
+    properties:
+      DeviceName:
+        title: Devicename
+        type: string
+      Ebs:
+        $ref: '#/$defs/Ebs'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Ebs
+    - tag
+    - DeviceName
+    title: BlockDeviceMapping1
+    type: object
+  BlockDeviceMappingSet:
+    properties:
+      item:
+        $ref: '#/$defs/Item25'
+    required:
+    - item
+    title: BlockDeviceMappingSet
+    type: object
+  CapacityReservationSpecification:
+    properties:
+      capacityReservationPreference:
+        title: Capacityreservationpreference
+        type: string
+    required:
+    - capacityReservationPreference
+    title: CapacityReservationSpecification
+    type: object
+  CloudWatchOutputConfig:
+    properties:
+      cloudWatchLogGroupName:
+        title: Cloudwatchloggroupname
+        type: string
+      cloudWatchOutputEnabled:
+        title: Cloudwatchoutputenabled
+        type: boolean
+    required:
+    - cloudWatchLogGroupName
+    - cloudWatchOutputEnabled
+    title: CloudWatchOutputConfig
+    type: object
+  Command:
+    properties:
+      alarmConfiguration:
+        $ref: '#/$defs/AlarmConfiguration'
+      clientName:
+        title: Clientname
+        type: string
+      clientSourceId:
+        title: Clientsourceid
+        type: string
+      cloudWatchOutputConfig:
+        $ref: '#/$defs/CloudWatchOutputConfig'
+      commandId:
+        title: Commandid
+        type: string
+      comment:
+        title: Comment
+        type: string
+      completedCount:
+        title: Completedcount
+        type: integer
+      deliveryTimedOutCount:
+        title: Deliverytimedoutcount
+        type: integer
+      documentName:
+        title: Documentname
+        type: string
+      documentVersion:
+        title: Documentversion
+        type: string
+      errorCount:
+        title: Errorcount
+        type: integer
+      expiresAfter:
+        title: Expiresafter
+        type: string
+      hasCancelCommandSignature:
+        title: Hascancelcommandsignature
+        type: boolean
+      hasSendCommandSignature:
+        title: Hassendcommandsignature
+        type: boolean
+      instanceIds:
+        items:
+          type: string
+        title: Instanceids
+        type: array
+      interactive:
+        title: Interactive
+        type: boolean
+      maxConcurrency:
+        title: Maxconcurrency
+        type: string
+      maxErrors:
+        title: Maxerrors
+        type: string
+      notificationConfig:
+        $ref: '#/$defs/NotificationConfig'
+      outputS3BucketName:
+        title: Outputs3Bucketname
+        type: string
+      outputS3KeyPrefix:
+        title: Outputs3Keyprefix
+        type: string
+      outputS3Region:
+        title: Outputs3Region
+        type: string
+      parameters:
+        title: Parameters
+        type: string
+      requestedDateTime:
+        title: Requesteddatetime
+        type: string
+      serviceRole:
+        title: Servicerole
+        type: string
+      status:
+        title: Status
+        type: string
+      statusDetails:
+        title: Statusdetails
+        type: string
+      targetCount:
+        title: Targetcount
+        type: integer
+      targets:
+        items:
+          $ref: '#/$defs/Target1'
+        title: Targets
+        type: array
+      timeoutSeconds:
+        title: Timeoutseconds
+        type: integer
+      triggeredAlarms:
+        items: {}
+        title: Triggeredalarms
+        type: array
+    required:
+    - commandId
+    - documentName
+    - documentVersion
+    - comment
+    - expiresAfter
+    - parameters
+    - instanceIds
+    - targets
+    - requestedDateTime
+    - status
+    - statusDetails
+    - outputS3Region
+    - outputS3BucketName
+    - outputS3KeyPrefix
+    - maxConcurrency
+    - maxErrors
+    - targetCount
+    - completedCount
+    - errorCount
+    - deliveryTimedOutCount
+    - serviceRole
+    - notificationConfig
+    - cloudWatchOutputConfig
+    - interactive
+    - timeoutSeconds
+    - clientName
+    - clientSourceId
+    - alarmConfiguration
+    - triggeredAlarms
+    - hasSendCommandSignature
+    - hasCancelCommandSignature
+    title: Command
+    type: object
+  Constraints:
+    properties:
+      encryptionContextSubset:
+        $ref: '#/$defs/EncryptionContextSubset'
+    required:
+    - encryptionContextSubset
+    title: Constraints
+    type: object
+  CpuOptions:
+    properties:
+      coreCount:
+        title: Corecount
+        type: integer
+      threadsPerCore:
+        title: Threadspercore
+        type: integer
+    required:
+    - coreCount
+    - threadsPerCore
+    title: CpuOptions
+    type: object
+  CreateLaunchTemplateRequest:
+    properties:
+      ClientToken:
+        title: Clienttoken
+        type: string
+      LaunchTemplateData:
+        $ref: '#/$defs/LaunchTemplateData1'
+      LaunchTemplateName:
+        title: Launchtemplatename
+        type: string
+      TagSpecification:
+        $ref: '#/$defs/TagSpecification'
+    required:
+    - LaunchTemplateName
+    - LaunchTemplateData
+    - ClientToken
+    - TagSpecification
+    title: CreateLaunchTemplateRequest
+    type: object
+  CreateLaunchTemplateResponse:
+    properties:
+      launchTemplate:
+        $ref: '#/$defs/LaunchTemplate2'
+      requestId:
+        title: Requestid
+        type: string
+      xmlns:
+        title: Xmlns
+        type: string
+    required:
+    - xmlns
+    - requestId
+    - launchTemplate
+    title: CreateLaunchTemplateResponse
+    type: object
+  CreateLaunchTemplateVersionRequest:
+    properties:
+      ClientToken:
+        title: Clienttoken
+        type: string
+      LaunchTemplateData:
+        $ref: '#/$defs/LaunchTemplateData'
+      LaunchTemplateId:
+        title: Launchtemplateid
+        type: string
+    required:
+    - LaunchTemplateData
+    - LaunchTemplateId
+    - ClientToken
+    title: CreateLaunchTemplateVersionRequest
+    type: object
+  CreateLaunchTemplateVersionResponse:
+    properties:
+      launchTemplateVersion:
+        $ref: '#/$defs/LaunchTemplateVersion1'
+      requestId:
+        title: Requestid
+        type: string
+      xmlns:
+        title: Xmlns
+        type: string
+    required:
+    - xmlns
+    - requestId
+    - launchTemplateVersion
+    title: CreateLaunchTemplateVersionResponse
+    type: object
+  Credentials:
+    properties:
+      accessKeyId:
+        title: Accesskeyid
+        type: string
+      expiration:
+        title: Expiration
+        type: string
+      sessionToken:
+        title: Sessiontoken
+        type: string
+    required:
+    - accessKeyId
+    - sessionToken
+    - expiration
+    title: Credentials
+    type: object
+  CurrentState:
+    properties:
+      code:
+        title: Code
+        type: integer
+      name:
+        title: Name
+        type: string
+    required:
+    - code
+    - name
+    title: CurrentState
+    type: object
+  DeleteLaunchTemplateRequest:
+    properties:
+      LaunchTemplateId:
+        title: Launchtemplateid
+        type: string
+    required:
+    - LaunchTemplateId
+    title: DeleteLaunchTemplateRequest
+    type: object
+  DeleteLaunchTemplateResponse:
+    properties:
+      launchTemplate:
+        $ref: '#/$defs/LaunchTemplate1'
+      requestId:
+        title: Requestid
+        type: string
+      xmlns:
+        title: Xmlns
+        type: string
+    required:
+    - xmlns
+    - requestId
+    - launchTemplate
+    title: DeleteLaunchTemplateResponse
+    type: object
+  DescribeAddressTransfersRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeAddressTransfersRequest
+    type: object
+  DescribeAddressesAttributeRequest:
+    properties:
+      Attribute:
+        title: Attribute
+        type: string
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - Attribute
+    - MaxResults
+    title: DescribeAddressesAttributeRequest
+    type: object
+  DescribeCapacityReservationFleetsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeCapacityReservationFleetsRequest
+    type: object
+  DescribeCapacityReservationsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeCapacityReservationsRequest
+    type: object
+  DescribeFleetsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeFleetsRequest
+    type: object
+  DescribeHostsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeHostsRequest
+    type: object
+  DescribeInstanceConnectEndpointsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeInstanceConnectEndpointsRequest
+    type: object
+  DescribeInstanceCreditSpecificationsRequest:
+    properties:
+      InstanceId:
+        $ref: '#/$defs/InstanceId'
+    required:
+    - InstanceId
+    title: DescribeInstanceCreditSpecificationsRequest
+    type: object
+  DescribeInstanceImageMetadataRequest:
+    properties:
+      InstanceId:
+        $ref: '#/$defs/InstanceId'
+    required:
+    - InstanceId
+    title: DescribeInstanceImageMetadataRequest
+    type: object
+  DescribeInstanceTypeOfferingsRequest:
+    properties:
+      LocationType:
+        title: Locationtype
+        type: string
+      NextToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Nexttoken
+    required:
+    - LocationType
+    title: DescribeInstanceTypeOfferingsRequest
+    type: object
+  DescribeInstanceTypesRequest:
+    properties:
+      InstanceType:
+        anyOf:
+        - $ref: '#/$defs/InstanceType'
+        - items:
+            $ref: '#/$defs/InstanceTypeItem'
+          type: array
+        - type: 'null'
+        default: null
+        title: Instancetype
+      MaxResults:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxresults
+      NextToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Nexttoken
+    title: DescribeInstanceTypesRequest
+    type: object
+  DescribeLaunchTemplateVersionsRequest:
+    properties:
+      LaunchTemplateId:
+        title: Launchtemplateid
+        type: string
+      LaunchTemplateVersion:
+        anyOf:
+        - $ref: '#/$defs/LaunchTemplateVersion'
+        - items:
+            $ref: '#/$defs/LaunchTemplateVersionItem'
+          type: array
+        - type: 'null'
+        default: null
+        title: Launchtemplateversion
+      MaxResults:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxresults
+    required:
+    - LaunchTemplateId
+    title: DescribeLaunchTemplateVersionsRequest
+    type: object
+  DescribeLaunchTemplatesRequest:
+    properties:
+      LaunchTemplateId:
+        anyOf:
+        - $ref: '#/$defs/LaunchTemplateId'
+        - type: 'null'
+        default: null
+      LaunchTemplateName:
+        anyOf:
+        - $ref: '#/$defs/LaunchTemplateName'
+        - type: 'null'
+        default: null
+      MaxResults:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxresults
+    title: DescribeLaunchTemplatesRequest
+    type: object
+  DescribeNatGatewaysRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeNatGatewaysRequest
+    type: object
+  DescribeNetworkInsightsAccessScopesRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeNetworkInsightsAccessScopesRequest
+    type: object
+  DescribeReplaceRootVolumeTasksRequest:
+    properties:
+      Filter:
+        $ref: '#/$defs/Filter1'
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - Filter
+    - MaxResults
+    title: DescribeReplaceRootVolumeTasksRequest
+    type: object
+  DescribeSecurityGroupRulesRequest:
+    properties:
+      Filter:
+        $ref: '#/$defs/Filter2'
+      MaxResults:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxresults
+    required:
+    - Filter
+    title: DescribeSecurityGroupRulesRequest
+    type: object
+  DescribeSpotFleetRequestsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+      NextToken:
+        title: Nexttoken
+        type: string
+    required:
+    - NextToken
+    - MaxResults
+    title: DescribeSpotFleetRequestsRequest
+    type: object
+  DescribeTrafficMirrorFiltersRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeTrafficMirrorFiltersRequest
+    type: object
+  DescribeTransitGatewayAttachmentsRequest:
+    properties:
+      Filter:
+        $ref: '#/$defs/Filter4'
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - Filter
+    - MaxResults
+    title: DescribeTransitGatewayAttachmentsRequest
+    type: object
+  DescribeTransitGatewayConnectPeersRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeTransitGatewayConnectPeersRequest
+    type: object
+  DescribeTransitGatewayPolicyTablesRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeTransitGatewayPolicyTablesRequest
+    type: object
+  DescribeVpcEndpointsRequest:
+    properties:
+      MaxResults:
+        title: Maxresults
+        type: integer
+    required:
+    - MaxResults
+    title: DescribeVpcEndpointsRequest
+    type: object
+  Description:
+    properties:
+      defaultVersion:
+        title: Defaultversion
+        type: string
+      name:
+        title: Name
+        type: string
+    required:
+    - name
+    - defaultVersion
+    title: Description
+    type: object
+  Details:
+    properties:
+      DocumentName:
+        title: Documentname
+        type: string
+      DocumentVersion:
+        title: Documentversion
+        type: string
+    required:
+    - DocumentVersion
+    - DocumentName
+    title: Details
+    type: object
+  Dimension:
+    properties:
+      name:
+        title: Name
+        type: string
+      value:
+        title: Value
+        type: string
+    required:
+    - name
+    - value
+    title: Dimension
+    type: object
+  DocumentDescription:
+    properties:
+      createdDate:
+        title: Createddate
+        type: string
+      defaultVersion:
+        title: Defaultversion
+        type: string
+      documentFormat:
+        title: Documentformat
+        type: string
+      documentId:
+        title: Documentid
+        type: string
+      documentType:
+        title: Documenttype
+        type: string
+      documentVersion:
+        title: Documentversion
+        type: string
+      hash:
+        title: Hash
+        type: string
+      hashType:
+        title: Hashtype
+        type: string
+      latestVersion:
+        title: Latestversion
+        type: string
+      name:
+        title: Name
+        type: string
+      owner:
+        title: Owner
+        type: string
+      platformTypes:
+        items:
+          type: string
+        title: Platformtypes
+        type: array
+      schemaVersion:
+        title: Schemaversion
+        type: string
+      status:
+        title: Status
+        type: string
+      tags:
+        items:
+          $ref: '#/$defs/Tag4'
+        title: Tags
+        type: array
+    required:
+    - hash
+    - hashType
+    - name
+    - owner
+    - createdDate
+    - status
+    - documentVersion
+    - platformTypes
+    - documentType
+    - schemaVersion
+    - latestVersion
+    - defaultVersion
+    - documentFormat
+    - tags
+    - documentId
+    title: DocumentDescription
+    type: object
+  Ebs:
+    properties:
+      Encrypted:
+        title: Encrypted
+        type: boolean
+      VolumeSize:
+        title: Volumesize
+        type: integer
+      VolumeType:
+        title: Volumetype
+        type: string
+    required:
+    - VolumeType
+    - Encrypted
+    - VolumeSize
+    title: Ebs
+    type: object
+  Ebs2:
+    properties:
+      encrypted:
+        title: Encrypted
+        type: boolean
+      volumeSize:
+        title: Volumesize
+        type: integer
+      volumeType:
+        title: Volumetype
+        type: string
+    required:
+    - volumeType
+    - encrypted
+    - volumeSize
+    title: Ebs2
+    type: object
+  EnclaveOptions:
+    properties:
+      enabled:
+        title: Enabled
+        type: boolean
+    required:
+    - enabled
+    title: EnclaveOptions
+    type: object
+  EncryptionContext:
+    properties:
+      PARAMETER_ARN:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Parameter Arn
+      aws:ebs:id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Aws:Ebs:Id
+      aws:logs:arn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Aws:Logs:Arn
+      aws:s3:arn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Aws:S3:Arn
+      aws:ssm:SessionId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Aws:Ssm:Sessionid
+      aws:ssm:TargetId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Aws:Ssm:Targetid
+    title: EncryptionContext
+    type: object
+  EncryptionContextSubset:
+    properties:
+      aws:ebs:id:
+        title: Aws:Ebs:Id
+        type: string
+    required:
+    - aws:ebs:id
+    title: EncryptionContextSubset
+    type: object
+  ExecutionResult:
+    properties:
+      errorCode:
+        title: Errorcode
+        type: string
+      executionDate:
+        title: Executiondate
+        type: string
+      executionSummary:
+        title: Executionsummary
+        type: string
+      status:
+        title: Status
+        type: string
+    required:
+    - executionDate
+    - status
+    - executionSummary
+    - errorCode
+    title: ExecutionResult
+    type: object
+  ExecutionSummary:
+    properties:
+      executionId:
+        title: Executionid
+        type: string
+      executionTime:
+        title: Executiontime
+        type: string
+      executionType:
+        title: Executiontype
+        type: string
+    required:
+    - executionTime
+    - executionId
+    - executionType
+    title: ExecutionSummary
+    type: object
+  Filter:
+    properties:
+      key:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Key
+      name:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Name
+      value:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Value
+      values:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Values
+    title: Filter
+    type: object
+  Filter1:
+    properties:
+      Name:
+        title: Name
+        type: string
+      Value:
+        $ref: '#/$defs/Value'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Value
+    - tag
+    - Name
+    title: Filter1
+    type: object
+  Filter2:
+    properties:
+      Name:
+        title: Name
+        type: string
+      Value:
+        $ref: '#/$defs/Value'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Value
+    - tag
+    - Name
+    title: Filter2
+    type: object
+  Filter3:
+    properties:
+      Name:
+        title: Name
+        type: string
+      Value:
+        $ref: '#/$defs/Value'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Value
+    - tag
+    - Name
+    title: Filter3
+    type: object
+  Filter4:
+    properties:
+      Name:
+        title: Name
+        type: string
+      Value:
+        items:
+          $ref: '#/$defs/ValueItem'
+        title: Value
+        type: array
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Value
+    - tag
+    - Name
+    title: Filter4
+    type: object
+  FilterSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item1'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: FilterSet
+    type: object
+  Filters1Item:
+    properties:
+      Key:
+        title: Key
+        type: string
+      Values:
+        items:
+          type: string
+        title: Values
+        type: array
+    required:
+    - Key
+    - Values
+    title: Filters1Item
+    type: object
+  FiltersWithOperatorItem:
+    properties:
+      key:
+        title: Key
+        type: string
+      operator:
+        title: Operator
+        type: string
+      values:
+        items:
+          type: string
+        title: Values
+        type: array
+    required:
+    - key
+    - values
+    - operator
+    title: FiltersWithOperatorItem
+    type: object
+  GetInstanceTypesFromInstanceRequirementsRequest:
+    properties:
+      ArchitectureType:
+        $ref: '#/$defs/ArchitectureType'
+      InstanceRequirements:
+        $ref: '#/$defs/InstanceRequirements'
+      VirtualizationType:
+        $ref: '#/$defs/VirtualizationType'
+    required:
+    - ArchitectureType
+    - VirtualizationType
+    - InstanceRequirements
+    title: GetInstanceTypesFromInstanceRequirementsRequest
+    type: object
+  GetSecurityGroupsForVpcRequest:
+    properties:
+      Filter:
+        $ref: '#/$defs/Filter3'
+      MaxResults:
+        title: Maxresults
+        type: integer
+      VpcId:
+        title: Vpcid
+        type: string
+    required:
+    - VpcId
+    - Filter
+    - MaxResults
+    title: GetSecurityGroupsForVpcRequest
+    type: object
+  GroupSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item21'
+        title: Items
+        type: array
+    required:
+    - items
+    title: GroupSet
+    type: object
+  GroupSet1:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item21'
+        title: Items
+        type: array
+    required:
+    - items
+    title: GroupSet1
+    type: object
+  GroupSet2:
+    properties:
+      groupId:
+        title: Groupid
+        type: string
+    required:
+    - groupId
+    title: GroupSet2
+    type: object
+  IamInstanceProfile:
+    properties:
+      Name:
+        title: Name
+        type: string
+    required:
+    - Name
+    title: IamInstanceProfile
+    type: object
+  IamInstanceProfile2:
+    properties:
+      arn:
+        title: Arn
+        type: string
+      id:
+        title: Id
+        type: string
+    required:
+    - arn
+    - id
+    title: IamInstanceProfile2
+    type: object
+  IamInstanceProfile3:
+    properties:
+      name:
+        title: Name
+        type: string
+    required:
+    - name
+    title: IamInstanceProfile3
+    type: object
+  ImagesSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item14'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: ImagesSet
+    type: object
+  Includes:
+    properties:
+      hasDnsFqdn:
+        title: Hasdnsfqdn
+        type: boolean
+      keyTypes:
+        items:
+          type: string
+        title: Keytypes
+        type: array
+    required:
+    - hasDnsFqdn
+    - keyTypes
+    title: Includes
+    type: object
+  InstanceId:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: InstanceId
+    type: object
+  InstanceRequirements:
+    properties:
+      MemoryMiB:
+        $ref: '#/$defs/MemoryMiB'
+      VCpuCount:
+        $ref: '#/$defs/VCpuCount'
+    required:
+    - VCpuCount
+    - MemoryMiB
+    title: InstanceRequirements
+    type: object
+  InstanceState:
+    properties:
+      code:
+        title: Code
+        type: integer
+      name:
+        title: Name
+        type: string
+    required:
+    - code
+    - name
+    title: InstanceState
+    type: object
+  InstanceType:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: InstanceType
+    type: object
+  InstanceTypeItem:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: InstanceTypeItem
+    type: object
+  InstancesSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: InstancesSet
+    type: object
+  InstancesSet1:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item19'
+        title: Items
+        type: array
+    required:
+    - items
+    title: InstancesSet1
+    type: object
+  InternetGatewayIdSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item12'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: InternetGatewayIdSet
+    type: object
+  Item:
+    properties:
+      instanceId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instanceid
+      maxCount:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxcount
+      minCount:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Mincount
+    title: Item
+    type: object
+  Item1:
+    properties:
+      name:
+        title: Name
+        type: string
+      valueSet:
+        $ref: '#/$defs/ValueSet'
+    required:
+    - name
+    - valueSet
+    title: Item1
+    type: object
+  Item10:
+    properties:
+      vpcId:
+        title: Vpcid
+        type: string
+    required:
+    - vpcId
+    title: Item10
+    type: object
+  Item11:
+    properties:
+      subnetId:
+        title: Subnetid
+        type: string
+    required:
+    - subnetId
+    title: Item11
+    type: object
+  Item12:
+    properties:
+      internetGatewayId:
+        title: Internetgatewayid
+        type: string
+    required:
+    - internetGatewayId
+    title: Item12
+    type: object
+  Item13:
+    properties:
+      networkInterfaceId:
+        title: Networkinterfaceid
+        type: string
+    required:
+    - networkInterfaceId
+    title: Item13
+    type: object
+  Item14:
+    properties:
+      imageId:
+        title: Imageid
+        type: string
+    required:
+    - imageId
+    title: Item14
+    type: object
+  Item15:
+    properties:
+      deviceIndex:
+        title: Deviceindex
+        type: integer
+      networkCardIndex:
+        title: Networkcardindex
+        type: integer
+      subnetId:
+        title: Subnetid
+        type: string
+    required:
+    - deviceIndex
+    - subnetId
+    - networkCardIndex
+    title: Item15
+    type: object
+  Item16:
+    properties:
+      resourceType:
+        title: Resourcetype
+        type: string
+      tags:
+        items:
+          $ref: '#/$defs/Tag'
+        title: Tags
+        type: array
+    required:
+    - resourceType
+    - tags
+    title: Item16
+    type: object
+  Item17:
+    properties:
+      resourceId:
+        title: Resourceid
+        type: string
+    required:
+    - resourceId
+    title: Item17
+    type: object
+  Item18:
+    properties:
+      key:
+        title: Key
+        type: string
+      value:
+        title: Value
+        type: string
+    required:
+    - key
+    - value
+    title: Item18
+    type: object
+  Item19:
+    properties:
+      amiLaunchIndex:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Amilaunchindex
+      architecture:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Architecture
+      blockDeviceMapping:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Blockdevicemapping
+      bootMode:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Bootmode
+      capacityReservationSpecification:
+        anyOf:
+        - $ref: '#/$defs/CapacityReservationSpecification'
+        - type: 'null'
+        default: null
+      clientToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Clienttoken
+      cpuOptions:
+        anyOf:
+        - $ref: '#/$defs/CpuOptions'
+        - type: 'null'
+        default: null
+      currentInstanceBootMode:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Currentinstancebootmode
+      currentState:
+        anyOf:
+        - $ref: '#/$defs/CurrentState'
+        - type: 'null'
+        default: null
+      ebsOptimized:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Ebsoptimized
+      enaSupport:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Enasupport
+      enclaveOptions:
+        anyOf:
+        - $ref: '#/$defs/EnclaveOptions'
+        - type: 'null'
+        default: null
+      groupSet:
+        anyOf:
+        - $ref: '#/$defs/GroupSet'
+        - type: 'null'
+        default: null
+      hypervisor:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Hypervisor
+      iamInstanceProfile:
+        anyOf:
+        - $ref: '#/$defs/IamInstanceProfile2'
+        - type: 'null'
+        default: null
+      imageId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Imageid
+      instanceId:
+        title: Instanceid
+        type: string
+      instanceState:
+        anyOf:
+        - $ref: '#/$defs/InstanceState'
+        - type: 'null'
+        default: null
+      instanceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instancetype
+      keyName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Keyname
+      launchTime:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Launchtime
+      maintenanceOptions:
+        anyOf:
+        - $ref: '#/$defs/MaintenanceOptions'
+        - type: 'null'
+        default: null
+      metadataOptions:
+        anyOf:
+        - $ref: '#/$defs/MetadataOptions'
+        - type: 'null'
+        default: null
+      monitoring:
+        anyOf:
+        - $ref: '#/$defs/Monitoring1'
+        - type: 'null'
+        default: null
+      networkInterfaceSet:
+        anyOf:
+        - $ref: '#/$defs/NetworkInterfaceSet1'
+        - type: 'null'
+        default: null
+      operator:
+        anyOf:
+        - $ref: '#/$defs/Operator'
+        - type: 'null'
+        default: null
+      placement:
+        anyOf:
+        - $ref: '#/$defs/Placement'
+        - type: 'null'
+        default: null
+      previousState:
+        anyOf:
+        - $ref: '#/$defs/PreviousState'
+        - type: 'null'
+        default: null
+      privateDnsName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Privatednsname
+      privateDnsNameOptions:
+        anyOf:
+        - $ref: '#/$defs/PrivateDnsNameOptions'
+        - type: 'null'
+        default: null
+      privateIpAddress:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Privateipaddress
+      productCodes:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Productcodes
+      rootDeviceName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Rootdevicename
+      rootDeviceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Rootdevicetype
+      sourceDestCheck:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Sourcedestcheck
+      stateReason:
+        anyOf:
+        - $ref: '#/$defs/StateReason'
+        - type: 'null'
+        default: null
+      subnetId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Subnetid
+      tagSet:
+        anyOf:
+        - $ref: '#/$defs/TagSet2'
+        - type: 'null'
+        default: null
+      virtualizationType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Virtualizationtype
+      vpcId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Vpcid
+    required:
+    - instanceId
+    title: Item19
+    type: object
+  Item2:
+    properties:
+      value:
+        title: Value
+        type: string
+    required:
+    - value
+    title: Item2
+    type: object
+  Item21:
+    properties:
+      groupId:
+        title: Groupid
+        type: string
+      groupName:
+        title: Groupname
+        type: string
+    required:
+    - groupId
+    - groupName
+    title: Item21
+    type: object
+  Item22:
+    properties:
+      attachment:
+        $ref: '#/$defs/Attachment'
+      groupSet:
+        $ref: '#/$defs/GroupSet1'
+      interfaceType:
+        title: Interfacetype
+        type: string
+      ipv6AddressesSet:
+        title: Ipv6Addressesset
+        type: object
+      macAddress:
+        title: Macaddress
+        type: string
+      networkInterfaceId:
+        title: Networkinterfaceid
+        type: string
+      operator:
+        $ref: '#/$defs/Operator'
+      ownerId:
+        title: Ownerid
+        type: string
+      privateDnsName:
+        title: Privatednsname
+        type: string
+      privateIpAddress:
+        title: Privateipaddress
+        type: string
+      privateIpAddressesSet:
+        $ref: '#/$defs/PrivateIpAddressesSet'
+      sourceDestCheck:
+        title: Sourcedestcheck
+        type: boolean
+      status:
+        title: Status
+        type: string
+      subnetId:
+        title: Subnetid
+        type: string
+      tagSet:
+        title: Tagset
+        type: object
+      vpcId:
+        title: Vpcid
+        type: string
+    required:
+    - networkInterfaceId
+    - subnetId
+    - vpcId
+    - ownerId
+    - operator
+    - status
+    - macAddress
+    - privateIpAddress
+    - privateDnsName
+    - sourceDestCheck
+    - interfaceType
+    - groupSet
+    - attachment
+    - privateIpAddressesSet
+    - ipv6AddressesSet
+    - tagSet
+    title: Item22
+    type: object
+  Item24:
+    properties:
+      associatePublicIpAddress:
+        title: Associatepublicipaddress
+        type: boolean
+      deleteOnTermination:
+        title: Deleteontermination
+        type: boolean
+      deviceIndex:
+        title: Deviceindex
+        type: integer
+      groupSet:
+        $ref: '#/$defs/GroupSet2'
+      networkCardIndex:
+        title: Networkcardindex
+        type: integer
+    required:
+    - networkCardIndex
+    - associatePublicIpAddress
+    - deleteOnTermination
+    - deviceIndex
+    - groupSet
+    title: Item24
+    type: object
+  Item25:
+    properties:
+      deviceName:
+        title: Devicename
+        type: string
+      ebs:
+        $ref: '#/$defs/Ebs2'
+    required:
+    - ebs
+    - deviceName
+    title: Item25
+    type: object
+  Item26:
+    properties:
+      key:
+        title: Key
+        type: string
+      value:
+        title: Value
+        type: string
+    required:
+    - value
+    - key
+    title: Item26
+    type: object
+  Item3:
+    properties:
+      volumeId:
+        title: Volumeid
+        type: string
+    required:
+    - volumeId
+    title: Item3
+    type: object
+  Item4:
+    properties:
+      groupId:
+        title: Groupid
+        type: string
+    required:
+    - groupId
+    title: Item4
+    type: object
+  Item5:
+    properties:
+      keyName:
+        title: Keyname
+        type: string
+    required:
+    - keyName
+    title: Item5
+    type: object
+  Item6:
+    properties:
+      owner:
+        title: Owner
+        type: string
+    required:
+    - owner
+    title: Item6
+    type: object
+  Item7:
+    properties:
+      captureTime:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Capturetime
+      contentHash:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Contenthash
+      details:
+        anyOf:
+        - $ref: '#/$defs/Details'
+        - type: 'null'
+        default: null
+      id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Id
+      schemaVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Schemaversion
+      severity:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Severity
+      status:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Status
+      title:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Title
+      typeName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Typename
+    title: Item7
+    type: object
+  Item8:
+    properties:
+      routeTableId:
+        title: Routetableid
+        type: string
+    required:
+    - routeTableId
+    title: Item8
+    type: object
+  Item9:
+    properties:
+      networkAclId:
+        title: Networkaclid
+        type: string
+    required:
+    - networkAclId
+    title: Item9
+    type: object
+  ItemItem:
+    properties:
+      primary:
+        title: Primary
+        type: boolean
+      privateDnsName:
+        title: Privatednsname
+        type: string
+      privateIpAddress:
+        title: Privateipaddress
+        type: string
+    required:
+    - privateIpAddress
+    - privateDnsName
+    - primary
+    title: ItemItem
+    type: object
+  KeySet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item5'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: KeySet
+    type: object
+  LaunchTemplate:
+    properties:
+      launchTemplateId:
+        title: Launchtemplateid
+        type: string
+      version:
+        title: Version
+        type: string
+    required:
+    - launchTemplateId
+    - version
+    title: LaunchTemplate
+    type: object
+  LaunchTemplate1:
+    properties:
+      createTime:
+        title: Createtime
+        type: string
+      createdBy:
+        title: Createdby
+        type: string
+      defaultVersionNumber:
+        title: Defaultversionnumber
+        type: integer
+      latestVersionNumber:
+        title: Latestversionnumber
+        type: integer
+      launchTemplateId:
+        title: Launchtemplateid
+        type: string
+      launchTemplateName:
+        title: Launchtemplatename
+        type: string
+      operator:
+        $ref: '#/$defs/Operator'
+    required:
+    - createTime
+    - createdBy
+    - launchTemplateId
+    - latestVersionNumber
+    - defaultVersionNumber
+    - launchTemplateName
+    - operator
+    title: LaunchTemplate1
+    type: object
+  LaunchTemplate2:
+    properties:
+      createTime:
+        title: Createtime
+        type: string
+      createdBy:
+        title: Createdby
+        type: string
+      defaultVersionNumber:
+        title: Defaultversionnumber
+        type: integer
+      latestVersionNumber:
+        title: Latestversionnumber
+        type: integer
+      launchTemplateId:
+        title: Launchtemplateid
+        type: string
+      launchTemplateName:
+        title: Launchtemplatename
+        type: string
+      operator:
+        $ref: '#/$defs/Operator'
+      tagSet:
+        $ref: '#/$defs/TagSet3'
+    required:
+    - tagSet
+    - createTime
+    - createdBy
+    - launchTemplateId
+    - latestVersionNumber
+    - defaultVersionNumber
+    - launchTemplateName
+    - operator
+    title: LaunchTemplate2
+    type: object
+  LaunchTemplateData:
+    properties:
+      BlockDeviceMapping:
+        $ref: '#/$defs/BlockDeviceMapping'
+      IamInstanceProfile:
+        $ref: '#/$defs/IamInstanceProfile'
+      ImageId:
+        title: Imageid
+        type: string
+      InstanceType:
+        title: Instancetype
+        type: string
+      KeyName:
+        title: Keyname
+        type: string
+      NetworkInterface:
+        $ref: '#/$defs/NetworkInterface'
+      UserData:
+        title: Userdata
+        type: string
+    required:
+    - KeyName
+    - UserData
+    - ImageId
+    - BlockDeviceMapping
+    - NetworkInterface
+    - IamInstanceProfile
+    - InstanceType
+    title: LaunchTemplateData
+    type: object
+  LaunchTemplateData1:
+    properties:
+      BlockDeviceMapping:
+        $ref: '#/$defs/BlockDeviceMapping1'
+      IamInstanceProfile:
+        $ref: '#/$defs/IamInstanceProfile'
+      ImageId:
+        title: Imageid
+        type: string
+      InstanceType:
+        title: Instancetype
+        type: string
+      KeyName:
+        title: Keyname
+        type: string
+      NetworkInterface:
+        $ref: '#/$defs/NetworkInterface1'
+      UserData:
+        title: Userdata
+        type: string
+    required:
+    - KeyName
+    - UserData
+    - ImageId
+    - BlockDeviceMapping
+    - NetworkInterface
+    - IamInstanceProfile
+    - InstanceType
+    title: LaunchTemplateData1
+    type: object
+  LaunchTemplateData2:
+    properties:
+      blockDeviceMappingSet:
+        $ref: '#/$defs/BlockDeviceMappingSet'
+      iamInstanceProfile:
+        $ref: '#/$defs/IamInstanceProfile3'
+      imageId:
+        title: Imageid
+        type: string
+      instanceType:
+        title: Instancetype
+        type: string
+      keyName:
+        title: Keyname
+        type: string
+      networkInterfaceSet:
+        $ref: '#/$defs/NetworkInterfaceSet2'
+      userData:
+        title: Userdata
+        type: string
+    required:
+    - imageId
+    - userData
+    - networkInterfaceSet
+    - blockDeviceMappingSet
+    - instanceType
+    - keyName
+    - iamInstanceProfile
+    title: LaunchTemplateData2
+    type: object
+  LaunchTemplateId:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: LaunchTemplateId
+    type: object
+  LaunchTemplateName:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: LaunchTemplateName
+    type: object
+  LaunchTemplateVersion:
+    properties:
+      content:
+        anyOf:
+        - type: integer
+        - type: string
+        title: Content
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: LaunchTemplateVersion
+    type: object
+  LaunchTemplateVersion1:
+    properties:
+      createTime:
+        title: Createtime
+        type: string
+      createdBy:
+        title: Createdby
+        type: string
+      defaultVersion:
+        title: Defaultversion
+        type: boolean
+      launchTemplateData:
+        $ref: '#/$defs/LaunchTemplateData2'
+      launchTemplateId:
+        title: Launchtemplateid
+        type: string
+      launchTemplateName:
+        title: Launchtemplatename
+        type: string
+      operator:
+        $ref: '#/$defs/Operator'
+      versionNumber:
+        title: Versionnumber
+        type: integer
+    required:
+    - createTime
+    - createdBy
+    - launchTemplateId
+    - launchTemplateData
+    - defaultVersion
+    - launchTemplateName
+    - operator
+    - versionNumber
+    title: LaunchTemplateVersion1
+    type: object
+  LaunchTemplateVersionItem:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: LaunchTemplateVersionItem
+    type: object
+  LookupAttribute:
+    properties:
+      attributeKey:
+        title: Attributekey
+        type: string
+      attributeValue:
+        title: Attributevalue
+        type: string
+    required:
+    - attributeKey
+    - attributeValue
+    title: LookupAttribute
+    type: object
+  MaintenanceOptions:
+    properties:
+      autoRecovery:
+        title: Autorecovery
+        type: string
+    required:
+    - autoRecovery
+    title: MaintenanceOptions
+    type: object
+  MemoryMiB:
+    properties:
+      Min:
+        title: Min
+        type: string
+    required:
+    - Min
+    title: MemoryMiB
+    type: object
+  MetadataOptions:
+    properties:
+      httpEndpoint:
+        title: Httpendpoint
+        type: string
+      httpProtocolIpv4:
+        title: Httpprotocolipv4
+        type: string
+      httpProtocolIpv6:
+        title: Httpprotocolipv6
+        type: string
+      httpPutResponseHopLimit:
+        title: Httpputresponsehoplimit
+        type: integer
+      httpTokens:
+        title: Httptokens
+        type: string
+      instanceMetadataTags:
+        title: Instancemetadatatags
+        type: string
+      state:
+        title: State
+        type: string
+    required:
+    - state
+    - httpTokens
+    - httpPutResponseHopLimit
+    - httpEndpoint
+    - httpProtocolIpv4
+    - httpProtocolIpv6
+    - instanceMetadataTags
+    title: MetadataOptions
+    type: object
+  ModelItem:
+    properties:
+      additionalEventData:
+        anyOf:
+        - $ref: '#/$defs/AdditionalEventData'
+        - type: 'null'
+        default: null
+      apiVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Apiversion
+      awsRegion:
+        title: Awsregion
+        type: string
+      errorCode:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Errorcode
+      errorMessage:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Errormessage
+      eventCategory:
+        title: Eventcategory
+        type: string
+      eventID:
+        title: Eventid
+        type: string
+      eventName:
+        title: Eventname
+        type: string
+      eventSource:
+        title: Eventsource
+        type: string
+      eventTime:
+        title: Eventtime
+        type: string
+      eventType:
+        title: Eventtype
+        type: string
+      eventVersion:
+        title: Eventversion
+        type: string
+      managementEvent:
+        title: Managementevent
+        type: boolean
+      readOnly:
+        title: Readonly
+        type: boolean
+      recipientAccountId:
+        title: Recipientaccountid
+        type: string
+      requestID:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Requestid
+      requestParameters:
+        anyOf:
+        - $ref: '#/$defs/RequestParameters'
+        - type: 'null'
+      resources:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Resource'
+          type: array
+        - type: 'null'
+        default: null
+        title: Resources
+      responseElements:
+        anyOf:
+        - $ref: '#/$defs/ResponseElements'
+        - type: 'null'
+      serviceEventDetails:
+        anyOf:
+        - $ref: '#/$defs/ServiceEventDetails'
+        - type: 'null'
+        default: null
+      sessionCredentialFromConsole:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Sessioncredentialfromconsole
+      sharedEventID:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Sharedeventid
+      sourceIPAddress:
+        title: Sourceipaddress
+        type: string
+      tlsDetails:
+        anyOf:
+        - $ref: '#/$defs/TlsDetails'
+        - type: 'null'
+        default: null
+      userAgent:
+        title: Useragent
+        type: string
+      userIdentity:
+        $ref: '#/$defs/UserIdentity'
+      vpcEndpointAccountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Vpcendpointaccountid
+      vpcEndpointId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Vpcendpointid
+    required:
+    - eventVersion
+    - userIdentity
+    - eventTime
+    - eventSource
+    - eventName
+    - awsRegion
+    - sourceIPAddress
+    - userAgent
+    - requestParameters
+    - responseElements
+    - eventID
+    - readOnly
+    - eventType
+    - managementEvent
+    - recipientAccountId
+    - eventCategory
+    title: ModelItem
+    type: object
+  Monitoring:
+    properties:
+      enabled:
+        title: Enabled
+        type: boolean
+    required:
+    - enabled
+    title: Monitoring
+    type: object
+  Monitoring1:
+    properties:
+      state:
+        title: State
+        type: string
+    required:
+    - state
+    title: Monitoring1
+    type: object
+  NetworkAclIdSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item9'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: NetworkAclIdSet
+    type: object
+  NetworkInterface:
+    properties:
+      AssociatePublicIpAddress:
+        title: Associatepublicipaddress
+        type: boolean
+      DeleteOnTermination:
+        title: Deleteontermination
+        type: boolean
+      DeviceIndex:
+        title: Deviceindex
+        type: integer
+      NetworkCardIndex:
+        title: Networkcardindex
+        type: integer
+      SecurityGroupId:
+        $ref: '#/$defs/SecurityGroupId'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - DeviceIndex
+    - SecurityGroupId
+    - tag
+    - AssociatePublicIpAddress
+    - NetworkCardIndex
+    - DeleteOnTermination
+    title: NetworkInterface
+    type: object
+  NetworkInterface1:
+    properties:
+      AssociatePublicIpAddress:
+        title: Associatepublicipaddress
+        type: boolean
+      DeleteOnTermination:
+        title: Deleteontermination
+        type: boolean
+      DeviceIndex:
+        title: Deviceindex
+        type: integer
+      NetworkCardIndex:
+        title: Networkcardindex
+        type: integer
+      SecurityGroupId:
+        $ref: '#/$defs/SecurityGroupId'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - DeviceIndex
+    - SecurityGroupId
+    - tag
+    - AssociatePublicIpAddress
+    - NetworkCardIndex
+    - DeleteOnTermination
+    title: NetworkInterface1
+    type: object
+  NetworkInterfaceIdSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item13'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: NetworkInterfaceIdSet
+    type: object
+  NetworkInterfaceSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item15'
+        title: Items
+        type: array
+    required:
+    - items
+    title: NetworkInterfaceSet
+    type: object
+  NetworkInterfaceSet1:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item22'
+        title: Items
+        type: array
+    required:
+    - items
+    title: NetworkInterfaceSet1
+    type: object
+  NetworkInterfaceSet2:
+    properties:
+      item:
+        $ref: '#/$defs/Item24'
+    required:
+    - item
+    title: NetworkInterfaceSet2
+    type: object
+  NotificationConfig:
+    properties:
+      notificationArn:
+        title: Notificationarn
+        type: string
+      notificationEvents:
+        items: {}
+        title: Notificationevents
+        type: array
+      notificationType:
+        title: Notificationtype
+        type: string
+    required:
+    - notificationArn
+    - notificationEvents
+    - notificationType
+    title: NotificationConfig
+    type: object
+  Operator:
+    properties:
+      managed:
+        title: Managed
+        type: boolean
+    required:
+    - managed
+    title: Operator
+    type: object
+  OwnersSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item6'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: OwnersSet
+    type: object
+  ParameterFilter:
+    properties:
+      key:
+        title: Key
+        type: string
+      option:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Option
+      values:
+        items:
+          type: string
+        title: Values
+        type: array
+    required:
+    - key
+    - values
+    title: ParameterFilter
+    type: object
+  Placement:
+    properties:
+      availabilityZone:
+        title: Availabilityzone
+        type: string
+      tenancy:
+        title: Tenancy
+        type: string
+    required:
+    - availabilityZone
+    - tenancy
+    title: Placement
+    type: object
+  Preferences:
+    properties:
+      autoRollback:
+        title: Autorollback
+        type: boolean
+      maxHealthyPercentage:
+        title: Maxhealthypercentage
+        type: integer
+      minHealthyPercentage:
+        title: Minhealthypercentage
+        type: integer
+      scaleInProtectedInstances:
+        title: Scaleinprotectedinstances
+        type: string
+      skipMatching:
+        title: Skipmatching
+        type: boolean
+      standbyInstances:
+        title: Standbyinstances
+        type: string
+    required:
+    - minHealthyPercentage
+    - skipMatching
+    - maxHealthyPercentage
+    - autoRollback
+    - scaleInProtectedInstances
+    - standbyInstances
+    title: Preferences
+    type: object
+  PreviousState:
+    properties:
+      code:
+        title: Code
+        type: integer
+      name:
+        title: Name
+        type: string
+    required:
+    - code
+    - name
+    title: PreviousState
+    type: object
+  PrivateDnsNameOptions:
+    properties:
+      enableResourceNameDnsAAAARecord:
+        title: Enableresourcenamednsaaaarecord
+        type: boolean
+      enableResourceNameDnsARecord:
+        title: Enableresourcenamednsarecord
+        type: boolean
+      hostnameType:
+        title: Hostnametype
+        type: string
+    required:
+    - hostnameType
+    - enableResourceNameDnsARecord
+    - enableResourceNameDnsAAAARecord
+    title: PrivateDnsNameOptions
+    type: object
+  PrivateIpAddressesSet:
+    properties:
+      item:
+        items:
+          $ref: '#/$defs/ItemItem'
+        title: Item
+        type: array
+    required:
+    - item
+    title: PrivateIpAddressesSet
+    type: object
+  RequestParameters:
+    properties:
+      CreateLaunchTemplateRequest:
+        anyOf:
+        - $ref: '#/$defs/CreateLaunchTemplateRequest'
+        - type: 'null'
+        default: null
+      CreateLaunchTemplateVersionRequest:
+        anyOf:
+        - $ref: '#/$defs/CreateLaunchTemplateVersionRequest'
+        - type: 'null'
+        default: null
+      DeleteLaunchTemplateRequest:
+        anyOf:
+        - $ref: '#/$defs/DeleteLaunchTemplateRequest'
+        - type: 'null'
+        default: null
+      DescribeAddressTransfersRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeAddressTransfersRequest'
+        - type: 'null'
+        default: null
+      DescribeAddressesAttributeRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeAddressesAttributeRequest'
+        - type: 'null'
+        default: null
+      DescribeCapacityReservationFleetsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeCapacityReservationFleetsRequest'
+        - type: 'null'
+        default: null
+      DescribeCapacityReservationsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeCapacityReservationsRequest'
+        - type: 'null'
+        default: null
+      DescribeFleetsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeFleetsRequest'
+        - type: 'null'
+        default: null
+      DescribeFlowLogsRequest:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Describeflowlogsrequest
+      DescribeHostsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeHostsRequest'
+        - type: 'null'
+        default: null
+      DescribeInstanceConnectEndpointsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeInstanceConnectEndpointsRequest'
+        - type: 'null'
+        default: null
+      DescribeInstanceCreditSpecificationsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeInstanceCreditSpecificationsRequest'
+        - type: 'null'
+        default: null
+      DescribeInstanceImageMetadataRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeInstanceImageMetadataRequest'
+        - type: 'null'
+        default: null
+      DescribeInstanceTypeOfferingsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeInstanceTypeOfferingsRequest'
+        - type: 'null'
+        default: null
+      DescribeInstanceTypesRequest:
+        anyOf:
+        - type: string
+        - $ref: '#/$defs/DescribeInstanceTypesRequest'
+        - type: 'null'
+        default: null
+        title: Describeinstancetypesrequest
+      DescribeLaunchTemplateVersionsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeLaunchTemplateVersionsRequest'
+        - type: 'null'
+        default: null
+      DescribeLaunchTemplatesRequest:
+        anyOf:
+        - type: string
+        - $ref: '#/$defs/DescribeLaunchTemplatesRequest'
+        - type: 'null'
+        default: null
+        title: Describelaunchtemplatesrequest
+      DescribeNatGatewaysRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeNatGatewaysRequest'
+        - type: 'null'
+        default: null
+      DescribeNetworkInsightsAccessScopesRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeNetworkInsightsAccessScopesRequest'
+        - type: 'null'
+        default: null
+      DescribeReplaceRootVolumeTasksRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeReplaceRootVolumeTasksRequest'
+        - type: 'null'
+        default: null
+      DescribeSecurityGroupRulesRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeSecurityGroupRulesRequest'
+        - type: 'null'
+        default: null
+      DescribeSpotFleetRequestsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeSpotFleetRequestsRequest'
+        - type: 'null'
+        default: null
+      DescribeTrafficMirrorFiltersRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeTrafficMirrorFiltersRequest'
+        - type: 'null'
+        default: null
+      DescribeTransitGatewayAttachmentsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeTransitGatewayAttachmentsRequest'
+        - type: 'null'
+        default: null
+      DescribeTransitGatewayConnectPeersRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeTransitGatewayConnectPeersRequest'
+        - type: 'null'
+        default: null
+      DescribeTransitGatewayPolicyTablesRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeTransitGatewayPolicyTablesRequest'
+        - type: 'null'
+        default: null
+      DescribeVpcEndpointsRequest:
+        anyOf:
+        - $ref: '#/$defs/DescribeVpcEndpointsRequest'
+        - type: 'null'
+        default: null
+      Filters:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Filters1Item'
+          type: array
+        - type: 'null'
+        default: null
+        title: Filters
+      GetAllowedImagesSettingsRequest:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Getallowedimagessettingsrequest
+      GetInstanceTypesFromInstanceRequirementsRequest:
+        anyOf:
+        - $ref: '#/$defs/GetInstanceTypesFromInstanceRequirementsRequest'
+        - type: 'null'
+        default: null
+      GetSecurityGroupsForVpcRequest:
+        anyOf:
+        - $ref: '#/$defs/GetSecurityGroupsForVpcRequest'
+        - type: 'null'
+        default: null
+      Host:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Host
+      MaxItems:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxitems
+      MaxResults:
+        anyOf:
+        - type: integer
+        - type: string
+        - type: 'null'
+        default: null
+        title: Maxresults
+      ServerSideEncryptionConfiguration:
+        anyOf:
+        - $ref: '#/$defs/ServerSideEncryptionConfiguration'
+        - type: 'null'
+        default: null
+      Tagging:
+        anyOf:
+        - $ref: '#/$defs/Tagging1'
+        - type: 'null'
+        default: null
+      Type:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Type
+      accelerate:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accelerate
+      accountAttributeNameSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Accountattributenameset
+      accountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accountid
+      accountIdentifiers:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Accountidentifiers
+      accountIds:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Accountids
+      acl:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Acl
+      actionPrefix:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Actionprefix
+      actionsEnabled:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Actionsenabled
+      activeOnly:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Activeonly
+      agentName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Agentname
+      agentStatus:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Agentstatus
+      agentVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Agentversion
+      alarmActions:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Alarmactions
+      alarmDescription:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Alarmdescription
+      alarmName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Alarmname
+      alarmNames:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Alarmnames
+      alarmTypes:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Alarmtypes
+      allAvailabilityZones:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Allavailabilityzones
+      allRegions:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Allregions
+      allocationIdsSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Allocationidsset
+      allowInvalidContent:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Allowinvalidcontent
+      allowedPattern:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Allowedpattern
+      anomalyDetectorTypes:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Anomalydetectortypes
+      anomalyVisibilityTime:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Anomalyvisibilitytime
+      associationId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Associationid
+      attribute:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Attribute
+      autoScalingGroupName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Autoscalinggroupname
+      autoScalingGroupNames:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Autoscalinggroupnames
+      availabilityZone:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Availabilityzone
+      availabilityZoneId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Availabilityzoneid
+      availabilityZoneIdSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Availabilityzoneidset
+      availabilityZoneSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Availabilityzoneset
+      awsAccountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Awsaccountid
+      baselineId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Baselineid
+      blockDeviceMapping:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Blockdevicemapping
+      bucketName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Bucketname
+      byShared:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Byshared
+      certificateArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Certificatearn
+      clientId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Clientid
+      clientInstanceId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Clientinstanceid
+      clientName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Clientname
+      clientToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Clienttoken
+      cloudWatchOutputConfig:
+        anyOf:
+        - $ref: '#/$defs/CloudWatchOutputConfig'
+        - type: 'null'
+        default: null
+      commandId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Commandid
+      comment:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Comment
+      comparisonOperator:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Comparisonoperator
+      complianceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Compliancetype
+      computerName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Computername
+      constraints:
+        anyOf:
+        - $ref: '#/$defs/Constraints'
+        - type: 'null'
+        default: null
+      content:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Content
+      cors:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Cors
+      customerGatewaySet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Customergatewayset
+      dashboardBody:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Dashboardbody
+      dashboardName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Dashboardname
+      descending:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Descending
+      details:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Details
+      detectorName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Detectorname
+      dimensions:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Dimension'
+          type: array
+        - type: 'null'
+        default: null
+        title: Dimensions
+      disableApiStop:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Disableapistop
+      disableApiTermination:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Disableapitermination
+      documentFormat:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Documentformat
+      documentName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Documentname
+      documentVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Documentversion
+      dryRun:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Dryrun
+      durationSeconds:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Durationseconds
+      encryption:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Encryption
+      encryptionAlgorithm:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Encryptionalgorithm
+      encryptionContext:
+        anyOf:
+        - $ref: '#/$defs/EncryptionContext'
+        - type: 'null'
+        default: null
+      endTime:
+        anyOf:
+        - type: integer
+        - type: string
+        - type: 'null'
+        default: null
+        title: Endtime
+      evaluationFrequency:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Evaluationfrequency
+      evaluationPeriods:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Evaluationperiods
+      eventBusName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Eventbusname
+      excludeAutoscalingAlarms:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Excludeautoscalingalarms
+      excludeManagedAlarms:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Excludemanagedalarms
+      executableBySet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Executablebyset
+      executionResult:
+        anyOf:
+        - $ref: '#/$defs/ExecutionResult'
+        - type: 'null'
+        default: null
+      executionSummary:
+        anyOf:
+        - $ref: '#/$defs/ExecutionSummary'
+        - type: 'null'
+        default: null
+      expression:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Expression
+      filterExpiredLogStreams:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Filterexpiredlogstreams
+      filterPattern:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Filterpattern
+      filterSet:
+        anyOf:
+        - $ref: '#/$defs/FilterSet'
+        - type: 'null'
+        default: null
+      filters:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Filter'
+          type: array
+        - type: 'null'
+        default: null
+        title: Filters
+      filtersWithOperator:
+        anyOf:
+        - items:
+            $ref: '#/$defs/FiltersWithOperatorItem'
+          type: array
+        - type: 'null'
+        default: null
+        title: Filterswithoperator
+      fingerprint:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Fingerprint
+      force:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Force
+      granteePrincipal:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Granteeprincipal
+      iPAddress:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ipaddress
+      imagesSet:
+        anyOf:
+        - $ref: '#/$defs/ImagesSet'
+        - type: 'null'
+        default: null
+      include:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Include
+      includeAllInstances:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Includeallinstances
+      includePublic:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Includepublic
+      includePublicKey:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Includepublickey
+      includeShadowTrails:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Includeshadowtrails
+      includeShared:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Includeshared
+      includes:
+        anyOf:
+        - $ref: '#/$defs/Includes'
+        - type: 'null'
+        default: null
+      instanceArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Instancearns
+      instanceId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instanceid
+      instanceIds:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Instanceids
+      instanceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instancetype
+      instanceTypeSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Instancetypeset
+      instancesSet:
+        anyOf:
+        - $ref: '#/$defs/InstancesSet'
+        - type: 'null'
+        default: null
+      intelligent-tiering:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Intelligent-Tiering
+      interactive:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Interactive
+      internetGatewayIdSet:
+        anyOf:
+        - $ref: '#/$defs/InternetGatewayIdSet'
+        - type: 'null'
+        default: null
+      itemContentHash:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Itemcontenthash
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item7'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+      keyId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Keyid
+      keyPairIdSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Keypairidset
+      keySet:
+        anyOf:
+        - $ref: '#/$defs/KeySet'
+        - type: 'null'
+        default: null
+      keySpec:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Keyspec
+      kmsKeyId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Kmskeyid
+      launchTemplate:
+        anyOf:
+        - $ref: '#/$defs/LaunchTemplate'
+        - type: 'null'
+        default: null
+      lifecycle:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Lifecycle
+      limit:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Limit
+      listenerArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Listenerarn
+      listenerArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Listenerarns
+      loadBalancerArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loadbalancerarn
+      loadBalancerArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Loadbalancerarns
+      location:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Location
+      logGroupArnList:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Loggrouparnlist
+      logGroupClass:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loggroupclass
+      logGroupIdentifier:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loggroupidentifier
+      logGroupIdentifiers:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Loggroupidentifiers
+      logGroupName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loggroupname
+      logGroupNamePrefix:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Loggroupnameprefix
+      logGroupNames:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Loggroupnames
+      logStreamName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Logstreamname
+      logStreamNamePrefix:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Logstreamnameprefix
+      logging:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Logging
+      lookupAttributes:
+        anyOf:
+        - items:
+            $ref: '#/$defs/LookupAttribute'
+          type: array
+        - type: 'null'
+        default: null
+        title: Lookupattributes
+      marker:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Marker
+      maxConcurrency:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Maxconcurrency
+      maxErrors:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Maxerrors
+      maxRecords:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Maxrecords
+      maxResults:
+        anyOf:
+        - type: integer
+        - type: string
+        - type: 'null'
+        default: null
+        title: Maxresults
+      messageSchemaVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Messageschemaversion
+      metricName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Metricname
+      monitoring:
+        anyOf:
+        - $ref: '#/$defs/Monitoring'
+        - type: 'null'
+        default: null
+      name:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Name
+      namespace:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Namespace
+      networkAclIdSet:
+        anyOf:
+        - $ref: '#/$defs/NetworkAclIdSet'
+        - type: 'null'
+        default: null
+      networkInterfaceIdSet:
+        anyOf:
+        - $ref: '#/$defs/NetworkInterfaceIdSet'
+        - type: 'null'
+        default: null
+      networkInterfaceSet:
+        anyOf:
+        - $ref: '#/$defs/NetworkInterfaceSet'
+        - type: 'null'
+        default: null
+      newInstancesProtectedFromScaleIn:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Newinstancesprotectedfromscalein
+      nextToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Nexttoken
+      notification:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Notification
+      numberOfBytes:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Numberofbytes
+      object-lock:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Object-Lock
+      operations:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Operations
+      orderBy:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Orderby
+      outputS3BucketName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Outputs3Bucketname
+      overwrite:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Overwrite
+      ownersSet:
+        anyOf:
+        - $ref: '#/$defs/OwnersSet'
+        - type: 'null'
+        default: null
+      ownershipControls:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ownershipcontrols
+      pageSize:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Pagesize
+      paginationToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Paginationtoken
+      parameterFilters:
+        anyOf:
+        - items:
+            $ref: '#/$defs/ParameterFilter'
+          type: array
+        - type: 'null'
+        default: null
+        title: Parameterfilters
+      parameters:
+        anyOf:
+        - type: object
+        - type: string
+        - type: 'null'
+        default: null
+        title: Parameters
+      period:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Period
+      permissionType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Permissiontype
+      placementGroupIdSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Placementgroupidset
+      placementGroupSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Placementgroupset
+      platformName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Platformname
+      platformType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Platformtype
+      platformVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Platformversion
+      pluginName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Pluginname
+      policy:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Policy
+      policyName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Policyname
+      policyNames:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Policynames
+      policyType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Policytype
+      policyTypes:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Policytypes
+      preferences:
+        anyOf:
+        - $ref: '#/$defs/Preferences'
+        - type: 'null'
+        default: null
+      productDescriptionSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Productdescriptionset
+      publicAccessBlock:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Publicaccessblock
+      publicIpsSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Publicipsset
+      publicKey:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Publickey
+      publicKeyType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Publickeytype
+      queryId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Queryid
+      queryLanguage:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Querylanguage
+      queryString:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Querystring
+      regionSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Regionset
+      replication:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Replication
+      requestId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Requestid
+      requestPayment:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Requestpayment
+      requireAcknowledgement:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Requireacknowledgement
+      resourceARN:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Resourcearn
+      resourceArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Resourcearn
+      resourceArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Resourcearns
+      resourceId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Resourceid
+      resourceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Resourcetype
+      resourceTypeFilters:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Resourcetypefilters
+      resourcesPerPage:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Resourcesperpage
+      resourcesSet:
+        anyOf:
+        - $ref: '#/$defs/ResourcesSet'
+        - type: 'null'
+        default: null
+      resultAttributes:
+        anyOf:
+        - items:
+            $ref: '#/$defs/ResultAttribute'
+          type: array
+        - type: 'null'
+        default: null
+        title: Resultattributes
+      retentionInDays:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Retentionindays
+      retiringPrincipal:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Retiringprincipal
+      roleArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Rolearn
+      roleSessionName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Rolesessionname
+      routeTableIdSet:
+        anyOf:
+        - $ref: '#/$defs/RouteTableIdSet'
+        - type: 'null'
+        default: null
+      rule:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Rule
+      ruleArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Rulearns
+      sSMConnectionChannel:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ssmconnectionchannel
+      securityGroupIdSet:
+        anyOf:
+        - $ref: '#/$defs/SecurityGroupIdSet'
+        - type: 'null'
+        default: null
+      securityGroupSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Securitygroupset
+      serviceNamespace:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Servicenamespace
+      sessionId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Sessionid
+      sharedUsersSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Sharedusersset
+      showSubscriptionDestinations:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Showsubscriptiondestinations
+      snapshotSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Snapshotset
+      snapshotType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Snapshottype
+      spotInstanceRequestIdSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Spotinstancerequestidset
+      stackStatusFilter:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Stackstatusfilter
+      startFromHead:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Startfromhead
+      startTime:
+        anyOf:
+        - type: integer
+        - type: string
+        - type: 'null'
+        default: null
+        title: Starttime
+      state:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: State
+      stateValue:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Statevalue
+      statistic:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Statistic
+      status:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Status
+      subnetSet:
+        anyOf:
+        - $ref: '#/$defs/SubnetSet'
+        - type: 'null'
+        default: null
+      tagFilters:
+        anyOf:
+        - items:
+            $ref: '#/$defs/TagFilter'
+          type: array
+        - type: 'null'
+        default: null
+        title: Tagfilters
+      tagSet:
+        anyOf:
+        - $ref: '#/$defs/TagSet'
+        - type: 'null'
+        default: null
+      tagSpecificationSet:
+        anyOf:
+        - $ref: '#/$defs/TagSpecificationSet'
+        - type: 'null'
+        default: null
+      tagging:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tagging
+      tags:
+        anyOf:
+        - $ref: '#/$defs/Tags'
+        - items:
+            $ref: '#/$defs/Tag2'
+          type: array
+        - type: 'null'
+        default: null
+        title: Tags
+      target:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Target
+      targetGroupArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Targetgrouparn
+      targetGroupArns:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Targetgrouparns
+      targets:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Target'
+          type: array
+        - type: 'null'
+        default: null
+        title: Targets
+      template:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Template
+      threshold:
+        anyOf:
+        - type: number
+        - type: 'null'
+        default: null
+        title: Threshold
+      tier:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tier
+      timeoutSeconds:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Timeoutseconds
+      topicArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Topicarn
+      trafficSourceType:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Trafficsourcetype
+      trailNameList:
+        anyOf:
+        - items: {}
+          type: array
+        - type: 'null'
+        default: null
+        title: Trailnamelist
+      type:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Type
+      unmask:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Unmask
+      value:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Value
+      versioning:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Versioning
+      visibility:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Visibility
+      volumeSet:
+        anyOf:
+        - $ref: '#/$defs/VolumeSet'
+        - type: 'null'
+        default: null
+      vpcId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Vpcid
+      vpcSet:
+        anyOf:
+        - $ref: '#/$defs/VpcSet'
+        - type: 'null'
+        default: null
+      vpnConnectionSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Vpnconnectionset
+      vpnGatewaySet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Vpngatewayset
+      website:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Website
+      windowId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Windowid
+      windowTaskId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Windowtaskid
+      withDecryption:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Withdecryption
+    title: RequestParameters
+    type: object
+  Resource:
+    properties:
+      ARN:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Arn
+      accountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accountid
+      type:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Type
+    title: Resource
+    type: object
+  ResourcesSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item17'
+        title: Items
+        type: array
+    required:
+    - items
+    title: ResourcesSet
+    type: object
+  ResponseElements:
+    properties:
+      ConsoleLogin:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Consolelogin
+      CreateLaunchTemplateResponse:
+        anyOf:
+        - $ref: '#/$defs/CreateLaunchTemplateResponse'
+        - type: 'null'
+        default: null
+      CreateLaunchTemplateVersionResponse:
+        anyOf:
+        - $ref: '#/$defs/CreateLaunchTemplateVersionResponse'
+        - type: 'null'
+        default: null
+      DeleteLaunchTemplateResponse:
+        anyOf:
+        - $ref: '#/$defs/DeleteLaunchTemplateResponse'
+        - type: 'null'
+        default: null
+      _return:
+        anyOf:
+        - type: boolean
+        - type: 'null'
+        default: null
+        title: Return
+      anomalyDetectorArn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Anomalydetectorarn
+      assumedRoleUser:
+        anyOf:
+        - $ref: '#/$defs/AssumedRoleUser'
+        - type: 'null'
+        default: null
+      audience:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Audience
+      command:
+        anyOf:
+        - $ref: '#/$defs/Command'
+        - type: 'null'
+        default: null
+      credentials:
+        anyOf:
+        - $ref: '#/$defs/Credentials'
+        - type: 'null'
+        default: null
+      dashboardValidationMessages:
+        anyOf:
+        - items: {}
+          type: array
+        - type: 'null'
+        default: null
+        title: Dashboardvalidationmessages
+      description:
+        anyOf:
+        - $ref: '#/$defs/Description'
+        - type: 'null'
+        default: null
+      documentDescription:
+        anyOf:
+        - $ref: '#/$defs/DocumentDescription'
+        - type: 'null'
+        default: null
+      grantId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Grantid
+      groupSet:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Groupset
+      instanceId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instanceid
+      instanceRefreshId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Instancerefreshid
+      instancesSet:
+        anyOf:
+        - $ref: '#/$defs/InstancesSet1'
+        - type: 'null'
+        default: null
+      keyId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Keyid
+      messageSchemaVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Messageschemaversion
+      ownerId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ownerid
+      packedPolicySize:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Packedpolicysize
+      provider:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Provider
+      queryId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Queryid
+      requestId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Requestid
+      requesterId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Requesterid
+      reservationId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Reservationid
+      sessionId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Sessionid
+      streamUrl:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Streamurl
+      subjectFromWebIdentityToken:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Subjectfromwebidentitytoken
+      tier:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tier
+      tokenValue:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tokenvalue
+      version:
+        anyOf:
+        - type: integer
+        - type: 'null'
+        default: null
+        title: Version
+    title: ResponseElements
+    type: object
+  ResultAttribute:
+    properties:
+      typeName:
+        title: Typename
+        type: string
+    required:
+    - typeName
+    title: ResultAttribute
+    type: object
+  RouteTableIdSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item8'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: RouteTableIdSet
+    type: object
+  Rule:
+    properties:
+      ApplyServerSideEncryptionByDefault:
+        $ref: '#/$defs/ApplyServerSideEncryptionByDefault'
+      BucketKeyEnabled:
+        title: Bucketkeyenabled
+        type: boolean
+    required:
+    - BucketKeyEnabled
+    - ApplyServerSideEncryptionByDefault
+    title: Rule
+    type: object
+  SecurityGroupId:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: SecurityGroupId
+    type: object
+  SecurityGroupIdSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item4'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: SecurityGroupIdSet
+    type: object
+  ServerSideEncryptionConfiguration:
+    properties:
+      Rule:
+        $ref: '#/$defs/Rule'
+      xmlns:
+        title: Xmlns
+        type: string
+    required:
+    - xmlns
+    - Rule
+    title: ServerSideEncryptionConfiguration
+    type: object
+  ServiceEventDetails:
+    properties:
+      DocumentName:
+        title: Documentname
+        type: string
+      IdleSessionTimeout:
+        title: Idlesessiontimeout
+        type: string
+      IsCloudWatchEncryptionEnabled:
+        title: Iscloudwatchencryptionenabled
+        type: boolean
+      IsKmsEncryptionEnabled:
+        title: Iskmsencryptionenabled
+        type: boolean
+      IsS3EncryptionEnabled:
+        title: Iss3Encryptionenabled
+        type: boolean
+      MaxSessionDuration:
+        title: Maxsessionduration
+        type: string
+    required:
+    - DocumentName
+    - IsKmsEncryptionEnabled
+    - IsS3EncryptionEnabled
+    - IsCloudWatchEncryptionEnabled
+    - IdleSessionTimeout
+    - MaxSessionDuration
+    title: ServiceEventDetails
+    type: object
+  SessionContext:
+    properties:
+      attributes:
+        $ref: '#/$defs/Attributes'
+      ec2RoleDelivery:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ec2Roledelivery
+      sessionIssuer:
+        anyOf:
+        - $ref: '#/$defs/SessionIssuer'
+        - type: 'null'
+        default: null
+      webIdFederationData:
+        anyOf:
+        - $ref: '#/$defs/WebIdFederationData'
+        - type: 'null'
+        default: null
+    required:
+    - attributes
+    title: SessionContext
+    type: object
+  SessionIssuer:
+    properties:
+      accountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accountid
+      arn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Arn
+      principalId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Principalid
+      type:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Type
+      userName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Username
+    title: SessionIssuer
+    type: object
+  StateReason:
+    properties:
+      code:
+        title: Code
+        type: string
+      message:
+        title: Message
+        type: string
+    required:
+    - code
+    - message
+    title: StateReason
+    type: object
+  SubnetSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item11'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: SubnetSet
+    type: object
+  Tag:
+    properties:
+      key:
+        title: Key
+        type: string
+      value:
+        title: Value
+        type: string
+    required:
+    - key
+    - value
+    title: Tag
+    type: object
+  Tag1:
+    properties:
+      Key:
+        title: Key
+        type: string
+      Value:
+        title: Value
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - Value
+    - tag
+    - Key
+    title: Tag1
+    type: object
+  Tag2:
+    properties:
+      key:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Key
+      tagKey:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tagkey
+      tagValue:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tagvalue
+      value:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Value
+    title: Tag2
+    type: object
+  Tag3:
+    properties:
+      Key:
+        title: Key
+        type: string
+      Value:
+        title: Value
+        type: string
+    required:
+    - Value
+    - Key
+    title: Tag3
+    type: object
+  Tag4:
+    properties:
+      key:
+        title: Key
+        type: string
+      value:
+        title: Value
+        type: string
+    required:
+    - key
+    - value
+    title: Tag4
+    type: object
+  TagFilter:
+    properties:
+      key:
+        title: Key
+        type: string
+    required:
+    - key
+    title: TagFilter
+    type: object
+  TagSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item18'
+        title: Items
+        type: array
+    required:
+    - items
+    title: TagSet
+    type: object
+  TagSet1:
+    properties:
+      Tag:
+        $ref: '#/$defs/Tag3'
+    required:
+    - Tag
+    title: TagSet1
+    type: object
+  TagSet2:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item18'
+        title: Items
+        type: array
+    required:
+    - items
+    title: TagSet2
+    type: object
+  TagSet3:
+    properties:
+      item:
+        $ref: '#/$defs/Item26'
+    required:
+    - item
+    title: TagSet3
+    type: object
+  TagSpecification:
+    properties:
+      ResourceType:
+        title: Resourcetype
+        type: string
+      Tag:
+        $ref: '#/$defs/Tag1'
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - ResourceType
+    - tag
+    - Tag
+    title: TagSpecification
+    type: object
+  TagSpecificationSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item16'
+        title: Items
+        type: array
+    required:
+    - items
+    title: TagSpecificationSet
+    type: object
+  Tagging1:
+    properties:
+      TagSet:
+        $ref: '#/$defs/TagSet1'
+      xmlns:
+        title: Xmlns
+        type: string
+    required:
+    - xmlns
+    - TagSet
+    title: Tagging1
+    type: object
+  Tags:
+    properties:
+      project:
+        title: Project
+        type: string
+    required:
+    - project
+    title: Tags
+    type: object
+  Target:
+    properties:
+      id:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Id
+      key:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Key
+      values:
+        anyOf:
+        - items:
+            type: string
+          type: array
+        - type: 'null'
+        default: null
+        title: Values
+    title: Target
+    type: object
+  Target1:
+    properties:
+      key:
+        title: Key
+        type: string
+      values:
+        items:
+          type: string
+        title: Values
+        type: array
+    required:
+    - key
+    - values
+    title: Target1
+    type: object
+  TlsDetails:
+    properties:
+      cipherSuite:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Ciphersuite
+      clientProvidedHostHeader:
+        title: Clientprovidedhostheader
+        type: string
+      tlsVersion:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Tlsversion
+    required:
+    - clientProvidedHostHeader
+    title: TlsDetails
+    type: object
+  UserIdentity:
+    properties:
+      accessKeyId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accesskeyid
+      accountId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Accountid
+      arn:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Arn
+      identityProvider:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Identityprovider
+      invokedBy:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Invokedby
+      principalId:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Principalid
+      sessionContext:
+        anyOf:
+        - $ref: '#/$defs/SessionContext'
+        - type: 'null'
+        default: null
+      type:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Type
+      userName:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Username
+    title: UserIdentity
+    type: object
+  VCpuCount:
+    properties:
+      Min:
+        title: Min
+        type: string
+    required:
+    - Min
+    title: VCpuCount
+    type: object
+  Value:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: Value
+    type: object
+  ValueItem:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: ValueItem
+    type: object
+  ValueSet:
+    properties:
+      items:
+        items:
+          $ref: '#/$defs/Item2'
+        title: Items
+        type: array
+    required:
+    - items
+    title: ValueSet
+    type: object
+  VirtualizationType:
+    properties:
+      content:
+        title: Content
+        type: string
+      tag:
+        title: Tag
+        type: integer
+    required:
+    - tag
+    - content
+    title: VirtualizationType
+    type: object
+  VolumeSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item3'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: VolumeSet
+    type: object
+  VpcSet:
+    properties:
+      items:
+        anyOf:
+        - items:
+            $ref: '#/$defs/Item10'
+          type: array
+        - type: 'null'
+        default: null
+        title: Items
+    title: VpcSet
+    type: object
+  WebIdFederationData:
+    properties:
+      attributes:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Attributes
+      federatedProvider:
+        anyOf:
+        - type: string
+        - type: 'null'
+        default: null
+        title: Federatedprovider
+    title: WebIdFederationData
+    type: object
+items:
+  $ref: '#/$defs/ModelItem'
+title: Model
+type: array
+
