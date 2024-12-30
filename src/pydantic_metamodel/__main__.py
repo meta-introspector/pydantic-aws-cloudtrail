@@ -1,7 +1,7 @@
 import yaml
-from datamodel_code_generator import DataModelType, InputFileType, generate
 #from pydantic import BaseModel
-import pydantic_aws_cloudtrail.aws.cloudtrail.events as model
+import pydantic_metamodel.model.meta as model
+from datamodel_code_generator import DataModelType, InputFileType, generate
 
 def main():
 #    print("hai")
@@ -9,7 +9,7 @@ def main():
 
 def print_json_schema():
     schema = model.Model.model_json_schema()
-    print(yaml.dump(schema))
+    
     result = generate(schema,
                   disable_timestamp=True,
                   enable_version_header = False,
@@ -19,8 +19,9 @@ def print_json_schema():
                   output_model_type=DataModelType.PydanticV2BaseModel,
                   snake_case_field=True
                   )
+    print(yaml.dump(schema))
     print(result)
-
+    
 
 
 if __name__ == "__main__":
