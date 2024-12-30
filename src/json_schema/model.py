@@ -4,19 +4,10 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional
-from pydantic import BaseModel
-
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, PositiveFloat, conint, constr
-from __future__ import annotations
-
-from typing import Any, Dict, List, Optional, Union
-
-from pydantic import AnyUrl, BaseModel, Field
-
+from pydantic import AnyUrl, BaseModel, Field, PositiveFloat, conint, constr
 
 
 class ContentVocabularyMetaSchema(BaseModel):
@@ -49,11 +40,11 @@ class FormatVocabularyMetaSchemaForAssertionResults(BaseModel):
 
 
 class NonNegativeInteger(BaseModel):
-    __root__: conint(ge=0)
+    root: conint(ge=0)
 
 
 class NonNegativeIntegerDefault0(BaseModel):
-    __root__: NonNegativeInteger
+    root: NonNegativeInteger
 
 class SimpleTypes(Enum):
     array = 'array'
@@ -66,7 +57,8 @@ class SimpleTypes(Enum):
 
 
 class StringArray(BaseModel):
-    __root__: List[str] = Field(..., unique_items=True)
+#    __root__: List[str] = Field(..., unique_items=True)
+    root: List[str] = Field(... ) # , unique_items=True
 
 
 class ValidationVocabularyMetaSchema(BaseModel):
@@ -90,13 +82,16 @@ class ValidationVocabularyMetaSchema(BaseModel):
     dependentRequired: Optional[Dict[str, StringArray]] = None
 
 class AnchorString(BaseModel):
-    __root__: constr(regex=r'^[A-Za-z_][-A-Za-z0-9._]*$')
+    #root: constr(regex=r'^[A-Za-z_][-A-Za-z0-9._]*$')
+    root: constr(
+        #regex=r'^[A-Za-z_][-A-Za-z0-9._]*$'
+    )
 
 class IriString(BaseModel):
-    __root__: str
+    root: str
 
 class IriReferenceString(BaseModel):
-    __root__: str
+    root: str
 
 class CoreVocabularyMetaSchema(BaseModel):
     field_id: Optional[IriReferenceString] = Field(None, alias='$id')
@@ -114,11 +109,11 @@ class CoreVocabularyMetaSchema(BaseModel):
 
 
 class NonNegativeInteger(BaseModel):
-    __root__: conint(ge=0)
+    root: conint(ge=0)
 
 
 class SchemaArray(BaseModel):
-    __root__: List[Any] = Field(..., min_items=1)
+    root: List[Any] = Field(..., min_items=1)
 
 
 class ApplicatorVocabularyMetaSchema(BaseModel):
@@ -151,7 +146,7 @@ class Flag(BaseModel):
 
 
 class Model(BaseModel):
-    __root__: Union[Flag, ListModel, Hierarchical] = Field(
+    root: Union[Flag, ListModel, Hierarchical] = Field(
         ...,
         description='A schema that validates the minimum requirements for validation output',
     )
@@ -169,7 +164,7 @@ class OutputUnit(BaseModel):
 
 
 class OutputUnitArray(BaseModel):
-    __root__: List[OutputUnit]
+    root: List[OutputUnit]
 
 
 class ListModel(BaseModel):
@@ -178,7 +173,7 @@ class ListModel(BaseModel):
 
 
 class Hierarchical(BaseModel):
-    __root__: OutputUnit
+    root: OutputUnit
 
 
 Model.update_forward_refs()

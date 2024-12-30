@@ -1,0 +1,101 @@
+$defs:
+  Flag:
+    properties:
+      valid:
+        title: Valid
+        type: boolean
+    required:
+    - valid
+    title: Flag
+    type: object
+  Hierarchical:
+    properties:
+      root:
+        $ref: '#/$defs/OutputUnit'
+    required:
+    - root
+    title: Hierarchical
+    type: object
+  ListModel:
+    properties:
+      details:
+        $ref: '#/$defs/OutputUnitArray'
+      valid:
+        title: Valid
+        type: boolean
+    required:
+    - valid
+    - details
+    title: ListModel
+    type: object
+  OutputUnit:
+    properties:
+      annotations:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Annotations
+      details:
+        anyOf:
+        - $ref: '#/$defs/OutputUnitArray'
+        - type: 'null'
+        default: null
+      droppedAnnotations:
+        anyOf:
+        - type: object
+        - type: 'null'
+        default: null
+        title: Droppedannotations
+      errors:
+        anyOf:
+        - additionalProperties:
+            type: string
+          type: object
+        - type: 'null'
+        default: null
+        title: Errors
+      evaluationPath:
+        title: Evaluationpath
+        type: string
+      instanceLocation:
+        title: Instancelocation
+        type: string
+      schemaLocation:
+        format: uri
+        minLength: 1
+        title: Schemalocation
+        type: string
+      valid:
+        title: Valid
+        type: boolean
+    required:
+    - valid
+    - evaluationPath
+    - schemaLocation
+    - instanceLocation
+    title: OutputUnit
+    type: object
+  OutputUnitArray:
+    properties:
+      root:
+        items:
+          $ref: '#/$defs/OutputUnit'
+        title: Root
+        type: array
+    required:
+    - root
+    title: OutputUnitArray
+    type: object
+properties:
+  root:
+    anyOf:
+    - $ref: '#/$defs/Flag'
+    - $ref: '#/$defs/ListModel'
+    - $ref: '#/$defs/Hierarchical'
+    description: A schema that validates the minimum requirements for validation output
+    title: Root
+required:
+- root
+title: Model
+type: object

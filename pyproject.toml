@@ -6,7 +6,8 @@ authors = ["Mike DuPont <jmikedupont2@gmail.com>"]
 readme = "README.md"
 packages = [
 	 {include = "pydantic_aws_cloudtrail", from = "src"},
-	 {include = "pydantic_metamodel", from = "src"}
+	 {include = "pydantic_metamodel", from = "src"},
+	 {include = "json_schema", from = "src"},
 ]
 
 [tool.poetry.scripts]
@@ -14,6 +15,7 @@ pydantic-aws-cloudtrail-generate-schema = "pydantic_aws_cloudtrail.__main__:main
 pct-fetch = "pydantic_aws_cloudtrail.fetch:main"
 pmm-init = "pydantic_metamodel.model.meta.__init__:main"
 pmm-generate-schema = "pydantic_metamodel.__main__:main"
+jss-generate-schema = "json_schema.__main__:main"
 
 
 [tool.poetry.dependencies]
