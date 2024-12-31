@@ -1,30 +1,27 @@
+import argparse
 import yaml
-#from pydantic import BaseModel
 import json_schema.model as model
 import json_schema.meta as model2
 from datamodel_code_generator import DataModelType, InputFileType, generate
 from introspector.graph import build_cluster_graph, create_clusters_with_depth
 import networkx as nx
 from pathlib import Path
+from jinja2 import Template
+import subprocess
 
-def generate_schema_entry_prelude(entry_name, framework="Pydantic"):
-    """
-    Generate a prelude for a specific schema entry.
-
-    Args:
-        entry_name (str): The name of the schema entry.
-        framework (str): The framework being used (default: "Pydantic").
-
-    Returns:
-        str: A prelude for the schema entry.
-    """
-    return f"""
+def generate_schema_entry_prelude(entry_name, framework="Pydantic", template_path=None):
+    if template_path:
+        with open(template_path) as file:
+            template_content = file.read()
+        template = Template(template_content)
+    else:
+        template_content = """
 Purpose:
-This schema entry '{entry_name}' represents a component of the JSON Schema, modeled using {framework}. It is part of a larger meta-model of the JSON Schema, which aims to facilitate deeper analysis, validation, or transformation.
+This schema entry '{{ entry_name }}' represents a component of the JSON Schema, modeled using {{ framework }}. It is part of a larger meta-model of the JSON Schema, which aims to facilitate deeper analysis, validation, or transformation.
 
 Details:
-- **Entry Name**: {entry_name}
-- **Framework**: {framework}
+- **Entry Name**: {{ entry_name }}
+- **Framework**: {{ framework }}
 
 Considerations:
 - Reflect on the clarity and appropriateness of the naming.
@@ -35,19 +32,18 @@ Testing and Validation:
 - Ensure the schema entry is correctly modeled.
 - Validate its relationships with other components.
 """
+        template = Template(template_content)
+    return template.render(entry_name=entry_name, framework=framework)
 
-def generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Schema"):
-    """
-        clusters (list[nx.DiGraph]): The list of clusters (subgraphs).
-        inbound_edges (dict): Inbound edges for each cluster.
-        framework (str): Framework being used (default: "Pydantic").
-        goal (str): The purpose or goal of the project (default: "Meta-model of JSON Schema").
-
-    Returns:
-        list[str]: A list of expanded preludes for each cluster.
-    """
-    prelude = f"""Purpose:
-This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using {framework}, 
+def generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Schema", template_path=None):
+    if template_path:
+        with open(template_path) as file:
+            template_content = file.read()
+        template = Template(template_content)
+    else:
+        template_content = """
+Purpose:
+This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using {{ framework }}, 
 and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
 a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
 
@@ -104,96 +100,84 @@ Consider discussing how user feedback will be collected and incorporated into fu
 Data Security:
 Consider which values would need to be secured and encrypted.
 """
-    return prelude
-
-
-def main():
-
-    print_json_schema()
+        template = Template(template_content)
+    return template.render(framework=framework, goal=goal)
 
 def extract(x):
-    if isinstance (x, str):
+    if isinstance(x, str):
         yield x
         for p in x.split("/"):
             yield p
-    elif isinstance (x, int):
+    elif isinstance(x, int):
         yield x
-    elif isinstance (x, list):
-        for i,j in enumerate(x):
+    elif isinstance(x, list):
+        for i, j in enumerate(x):
             yield from extract(j)
-            #print(i,j)
-    elif isinstance (x, dict):
+    elif isinstance(x, dict):
         for i in x:
             v = x[i]
             yield from extract(v)
-            #print(i,x[i])
-            
     else:
-        yield("unknown {x}")
-    
-            
-def print_json_schema():
-    for m,mod in enumerate([model, model2]):
+        yield(f"unknown {x}")
+
+def print_json_schema(output_path, framework, goal, entry_template_paths, prelude_template_paths, script_name):
+    for m, mod in enumerate([model, model2]):
         schema = mod.Model.model_json_schema()
-        #print(schema)
         G = nx.DiGraph()
 
-        ## COLLECT AND POPULATE GRAPH
         for defi in schema['$defs']:
             def1 = schema['$defs'][defi]
             refs = set([x for x in extract(def1) if x in schema['$defs']])
-            for x in extract(def1) :
+            for x in extract(def1):
                 if x in schema['$defs']:
                     if x != defi:
                         G.add_edge(defi, x)
 
-        ## Report on graph
         clusters = create_clusters_with_depth(G, depth=4, max_size=8)
-        # Build the cluster graph
         cluster_graph, inbound_edges = build_cluster_graph(G, clusters)
-        # Review each cluster
 
-        output_path = "output/"
         Path(output_path).mkdir(exist_ok=True)
         for i, cluster in enumerate(clusters):
-            with open(f"{output_path}/cluster{i}.txt","w") as fo:
-                print(generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Schema"),file=fo)
-                print(f"Cluster {i+1}:",file=fo)
-                print(f"Nodes: {cluster.nodes()}",file=fo)            
+            with open(f"{output_path}/cluster{i}.txt", "w") as fo:
+                if prelude_template_paths:
+                    for prelude_template_path in prelude_template_paths:
+                        print(generate_expanded_prelude(framework=framework,
+                                                        goal=goal, template_path=prelude_template_path), file=fo)
+                else:
+                    print(generate_expanded_prelude(
+                        framework=framework, goal=goal), file=fo)                          
+                          
+                print(f"Cluster {i + 1}:", file=fo)
+                print(f"Nodes: {cluster.nodes()}", file=fo)
                 for x in cluster.nodes():
-                    s= schema['$defs'][x]
-                    #print("Node",x,"SCHEMA:",file=fo)
-                    print(generate_schema_entry_prelude(x), file=fo)
-                    print(yaml.dump(s).replace("\n","\n    "),file=fo)
-                print(f"Edges: {cluster.edges()}",file=fo)
-                print(f"Inbound Edges: {inbound_edges[i]}",file=fo)
-            
-        # Display meta-graph of clusters
-        #print("Meta-Graph of Clusters:")
-        #print(f"Nodes: {cluster_graph.nodes()}")
-        #print(f"Edges: {cluster_graph.edges()}")
-        
-        #T = nx.dfs_tree(G, depth_limit=10)
-        #print(T)
-        #nx.write_gml(T, f"model{m}.dot")
-        
-            #print(defi, schema['$defs'][defi])
-        # now lets get all the deps recursivly.
-        
-        # result = generate(schema,
-        #               disable_timestamp=True,
-        #               enable_version_header = False,
-        #               input_file_type=InputFileType.Dict,
-        #               input_filename=None,
-        #               #output=output_file,
-        #               output_model_type=DataModelType.PydanticV2BaseModel,
-        #               snake_case_field=True
-        #               )
-        #print(yaml.dump(schema))
-        #print(result)
-        
+                    s = schema['$defs'][x]
+                    if (entry_template_paths):
+                        for entry_template_path in entry_template_paths:
+                            print(generate_schema_entry_prelude(x,
+                                                                framework=framework,
+                                                                template_path=entry_template_path), file=fo)
+                    else:
+                        print(generate_schema_entry_prelude(x, framework=framework), file=fo)
+                    print(yaml.dump(s).replace("\n", "\n    "), file=fo)
+                print(f"Edges: {cluster.edges()}", file=fo)
+                print(f"Inbound Edges: {inbound_edges[i]}", file=fo)
+
+        # Execute another process on the output file in the background
+        subprocess.Popen(['python', script_name, output_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-if __name__ == "__main__":
-    print_json_schema()
+def main():
+    parser = argparse.ArgumentParser(description='Process JSON Schema and generate preludes.')
+    parser.add_argument('--output_path', type=str, default='output/', help='Path to the output directory')
+    parser.add_argument('--framework', type=str, default='Pydantic', help='Framework being used')
+    parser.add_argument('--goal', type=str, default='Meta-model of JSON Schema', help='Purpose or goal of the project')
+    parser.add_argument('--entry_template_paths', type=str, nargs='+', help='Paths to the entry template files')
+    parser.add_argument('--prelude_template_paths', type=str, nargs='+', help='Paths to the prelude template files')
+    parser.add_argument('--script_name', type=str, required=True, help='Name of the script to execute on the output files')
+
+    args = parser.parse_args()
+
+    print_json_schema(args.output_path, args.framework, args.goal, args.entry_template_paths, args.prelude_template_paths, args.script_name)
     
+if __name__ == "__main__":
+    main()
