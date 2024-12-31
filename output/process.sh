@@ -1,4 +1,4 @@
-TGT=output/visual/
+TGT=${1-output/visual/}
 mkdir -p ${TGT}
 for x in $(ls *.txt);
 do
