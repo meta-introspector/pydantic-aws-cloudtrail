@@ -12,7 +12,7 @@ class Validation(BaseModel):
     type: str
 
 class Property(BaseModel):
-    validation: Validation
+    validation: Validation = Field(..., alias='valid')
 
 class FlagSchema(BaseModel):
     properties: Property
