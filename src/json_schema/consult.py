@@ -22,7 +22,14 @@ This cluster represents a localized subgraph of the JSON Schema. The nodes are s
 and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
 a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
 
-    Your task is to reflect over this chunk, first of all, what could we rename to make it more clear, how can we improve the names of the variables and why. How would you visualize this data structure? How would you allow the user to edit this data?
+    Your task is to reflect over this chunk, first of all, what could we rename to make it more clear, how can we improve the names of the variables and why.
+    
+    How would you visualize this data structure? How would you allow the user to edit this data using a set of nextjs component for these items served by python fast api on uvicorn in a docker container?
+    What cli commands would you include using the click libary, include definitions.
+
+    **Testing and Validation**: Adding a section on how to test and validate the changes and improvements could be beneficial.
+    **User Feedback**: Consider discussing how user feedback will be collected and incorporated into future iterations of the data structure and interface.
+    **Data Security**: Consider which values would need to be secured and encrypted.
 """
     return prelude
 
