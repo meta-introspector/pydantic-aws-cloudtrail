@@ -16,6 +16,7 @@ pct-fetch = "pydantic_aws_cloudtrail.fetch:main"
 pmm-init = "pydantic_metamodel.model.meta.__init__:main"
 pmm-generate-schema = "pydantic_metamodel.__main__:main"
 jss-generate-schema = "json_schema.__main__:main"
+jss-consult = "json_schema.consult:main"
 
 
 [tool.poetry.dependencies]
@@ -25,6 +26,7 @@ pyyaml = "^6.0.2"
 boto3 = "^1.35.90"
 ruff = "^0.8.4"
 datamodel-code-generator = "^0.26.4"
+networkx = "^3.4.2"
 
 
 [build-system]
