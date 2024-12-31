@@ -3,56 +3,33 @@ import yaml
 import json_schema.model as model
 import json_schema.meta as model2
 from datamodel_code_generator import DataModelType, InputFileType, generate
+from introspector.graph import build_cluster_graph, create_clusters_with_depth
 import networkx as nx
+from pathlib import Path
 
-import networkx as nx
-
-def create_clusters_with_depth(graph, depth, max_size):
+def generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Schema"):
     """
-    Creates clusters of nodes with a depth around each node, ensuring clusters are within the max size.
-
-    Args:
-        graph (nx.DiGraph): The directed graph.
-        depth (int): The depth to explore around each node.
-        max_size (int): The maximum size of each cluster.
+        clusters (list[nx.DiGraph]): The list of clusters (subgraphs).
+        inbound_edges (dict): Inbound edges for each cluster.
+        framework (str): Framework being used (default: "Pydantic").
+        goal (str): The purpose or goal of the project (default: "Meta-model of JSON Schema").
 
     Returns:
-        list[nx.DiGraph]: A list of clusters as subgraphs.
+        list[str]: A list of expanded preludes for each cluster.
     """
-    visited = set()
-    clusters = []
+    prelude = f"""Purpose:
+This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using {framework}, 
+and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
+a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+"""
+    return prelude
 
-    for node in graph.nodes():
-        if node in visited:
-            continue
-        
-        # Use BFS to get nodes within the depth
-        cluster_nodes = set()
-        queue = [(node, 0)]
-        
-        while queue:
-            current_node, current_depth = queue.pop(0)
-            if current_node in cluster_nodes or current_depth > depth:
-                continue
-            
-            cluster_nodes.add(current_node)
-            if len(cluster_nodes) >= max_size:
-                break
-            
-            for neighbor in graph.successors(current_node):
-                if neighbor not in cluster_nodes:
-                    queue.append((neighbor, current_depth + 1))
-            for neighbor in graph.predecessors(current_node):
-                if neighbor not in cluster_nodes:
-                    queue.append((neighbor, current_depth + 1))
-        
-        # Mark nodes in this cluster as visited
-        visited.update(cluster_nodes)
-        
-        # Add this cluster as a subgraph
-        clusters.append(graph.subgraph(cluster_nodes).copy())
+# "Purpose:
+# This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using {framework}, 
+# and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
+# a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+# """
 
-    return clusters
 
 def main():
 
@@ -84,29 +61,41 @@ def print_json_schema():
         schema = mod.Model.model_json_schema()
         #print(schema)
         G = nx.DiGraph()
-        
+
+        ## COLLECT AND POPULATE GRAPH
         for defi in schema['$defs']:
             def1 = schema['$defs'][defi]
             refs = set([x for x in extract(def1) if x in schema['$defs']])
-
             for x in extract(def1) :
                 if x in schema['$defs']:
                     if x != defi:
                         G.add_edge(defi, x)
-            #deps[defi] = refs
-        clusters = create_clusters_with_depth(G, depth=5, max_size=10)
 
-
+        ## Report on graph
+        clusters = create_clusters_with_depth(G, depth=4, max_size=8)
+        # Build the cluster graph
+        cluster_graph, inbound_edges = build_cluster_graph(G, clusters)
         # Review each cluster
+
+        output_path = "output/"
+        Path(output_path).mkdir(exist_ok=True)
         for i, cluster in enumerate(clusters):
-            print(f"Cluster {i+1}:")
-            print(f"Nodes: {cluster.nodes()}")
-            for x in cluster.nodes():
-                s= schema['$defs'][x]
-                print("Node",x,s)
-            print(f"Edges: {cluster.edges()}")
-            print()
-    
+            with open(f"{output_path}/cluster{i}.txt","w") as fo:
+                print(generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Schema"),file=fo)
+                print(f"Cluster {i+1}:",file=fo)
+                print(f"Nodes: {cluster.nodes()}",file=fo)            
+                for x in cluster.nodes():
+                    s= schema['$defs'][x]
+                    print("Node",x,"SCHEMA:",file=fo)
+                    print(yaml.dump(s).replace("\n","\n    "),file=fo)
+                print(f"Edges: {cluster.edges()}",file=fo)
+                print(f"Inbound Edges: {inbound_edges[i]}",file=fo)
+            
+        # Display meta-graph of clusters
+        #print("Meta-Graph of Clusters:")
+        #print(f"Nodes: {cluster_graph.nodes()}")
+        #print(f"Edges: {cluster_graph.edges()}")
+        
         #T = nx.dfs_tree(G, depth_limit=10)
         #print(T)
         #nx.write_gml(T, f"model{m}.dot")

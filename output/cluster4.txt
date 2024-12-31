@@ -1,0 +1,151 @@
+Purpose:
+This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using Pydantic, 
+and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
+a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+
+Cluster 5:
+Nodes: ['Properties', 'Valid', 'FieldDefs', 'Properties2', 'ListModel', 'Properties3', 'Details', 'Flag']
+Node Properties SCHEMA:
+properties:
+      valid:
+        $ref: '#/$defs/Valid'
+    required:
+    - valid
+    title: Properties
+    type: object
+    
+Node Valid SCHEMA:
+properties:
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - title
+    - type
+    title: Valid
+    type: object
+    
+Node FieldDefs SCHEMA:
+properties:
+      Flag:
+        $ref: '#/$defs/Flag'
+      Hierarchical:
+        $ref: '#/$defs/Hierarchical'
+      ListModel:
+        $ref: '#/$defs/ListModel'
+      OutputUnit:
+        $ref: '#/$defs/OutputUnit'
+      OutputUnitArray:
+        $ref: '#/$defs/OutputUnitArray'
+    required:
+    - Flag
+    - Hierarchical
+    - ListModel
+    - OutputUnit
+    - OutputUnitArray
+    title: FieldDefs
+    type: object
+    
+Node Properties2 SCHEMA:
+properties:
+      details:
+        $ref: '#/$defs/Details'
+      valid:
+        $ref: '#/$defs/Valid'
+    required:
+    - valid
+    - details
+    title: Properties2
+    type: object
+    
+Node ListModel SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties2'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: ListModel
+    type: object
+    
+Node Properties3 SCHEMA:
+properties:
+      annotations:
+        $ref: '#/$defs/Annotations'
+      details:
+        $ref: '#/$defs/Details1'
+      droppedAnnotations:
+        $ref: '#/$defs/DroppedAnnotations'
+      errors:
+        $ref: '#/$defs/Errors'
+      evaluationPath:
+        $ref: '#/$defs/EvaluationPath'
+      instanceLocation:
+        $ref: '#/$defs/InstanceLocation'
+      schemaLocation:
+        $ref: '#/$defs/SchemaLocation'
+      valid:
+        $ref: '#/$defs/Valid'
+    required:
+    - valid
+    - evaluationPath
+    - schemaLocation
+    - instanceLocation
+    - details
+    - annotations
+    - droppedAnnotations
+    - errors
+    title: Properties3
+    type: object
+    
+Node Details SCHEMA:
+properties:
+      $ref:
+        title: $Ref
+        type: string
+    required:
+    - $ref
+    title: Details
+    type: object
+    
+Node Flag SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: Flag
+    type: object
+    
+Edges: [('Properties', 'Valid'), ('FieldDefs', 'Flag'), ('FieldDefs', 'ListModel'), ('Properties2', 'Valid'), ('Properties2', 'Details'), ('ListModel', 'Properties2'), ('Properties3', 'Valid'), ('Flag', 'Properties')]
+Inbound Edges: [('OutputUnit', 'Properties3')]

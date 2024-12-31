@@ -1,0 +1,164 @@
+Purpose:
+This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using Pydantic, 
+and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
+a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+
+Cluster 7:
+Nodes: ['FieldDefs', 'ListModel', 'OutputUnit', 'Properties1', 'Hierarchical', 'Root', 'Flag', 'OutputUnitArray']
+Node FieldDefs SCHEMA:
+properties:
+      Flag:
+        $ref: '#/$defs/Flag'
+      Hierarchical:
+        $ref: '#/$defs/Hierarchical'
+      ListModel:
+        $ref: '#/$defs/ListModel'
+      OutputUnit:
+        $ref: '#/$defs/OutputUnit'
+      OutputUnitArray:
+        $ref: '#/$defs/OutputUnitArray'
+    required:
+    - Flag
+    - Hierarchical
+    - ListModel
+    - OutputUnit
+    - OutputUnitArray
+    title: FieldDefs
+    type: object
+    
+Node ListModel SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties2'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: ListModel
+    type: object
+    
+Node OutputUnit SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties3'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: OutputUnit
+    type: object
+    
+Node Properties1 SCHEMA:
+properties:
+      root:
+        $ref: '#/$defs/Root'
+    required:
+    - root
+    title: Properties1
+    type: object
+    
+Node Hierarchical SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties1'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: Hierarchical
+    type: object
+    
+Node Root SCHEMA:
+properties:
+      $ref:
+        title: $Ref
+        type: string
+    required:
+    - $ref
+    title: Root
+    type: object
+    
+Node Flag SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: Flag
+    type: object
+    
+Node OutputUnitArray SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties4'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: OutputUnitArray
+    type: object
+    
+Edges: [('FieldDefs', 'Flag'), ('FieldDefs', 'Hierarchical'), ('FieldDefs', 'ListModel'), ('FieldDefs', 'OutputUnit'), ('FieldDefs', 'OutputUnitArray'), ('Properties1', 'Root'), ('Hierarchical', 'Properties1')]
+Inbound Edges: []

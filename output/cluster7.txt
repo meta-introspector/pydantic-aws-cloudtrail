@@ -1,0 +1,48 @@
+Purpose:
+This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using Pydantic, 
+and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
+a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+
+Cluster 8:
+Nodes: ['Properties5', 'Root2', 'AnyOfItem4']
+Node Properties5 SCHEMA:
+properties:
+      root:
+        $ref: '#/$defs/Root2'
+    required:
+    - root
+    title: Properties5
+    type: object
+    
+Node Root2 SCHEMA:
+properties:
+      anyOf:
+        items:
+          $ref: '#/$defs/AnyOfItem4'
+        title: Anyof
+        type: array
+      description:
+        title: Description
+        type: string
+      title:
+        title: Title
+        type: string
+    required:
+    - anyOf
+    - description
+    - title
+    title: Root2
+    type: object
+    
+Node AnyOfItem4 SCHEMA:
+properties:
+      $ref:
+        title: $Ref
+        type: string
+    required:
+    - $ref
+    title: AnyOfItem4
+    type: object
+    
+Edges: [('Properties5', 'Root2'), ('Root2', 'AnyOfItem4')]
+Inbound Edges: []
