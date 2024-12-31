@@ -3,27 +3,63 @@ This cluster represents a localized subgraph of the JSON Schema. The nodes are s
 and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
 a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
 
+    Your task is to reflect over this chunk, first of all, what could we rename to make it more clear, how can we improve the names of the variables and why. How would you visualize this data structure? How would you allow the user to edit this data?
+
 Cluster 7:
-Nodes: ['FieldDefs', 'ListModel', 'OutputUnit', 'Properties1', 'Hierarchical', 'Root', 'Flag', 'OutputUnitArray']
-Node FieldDefs SCHEMA:
+Nodes: ['Properties1', 'OutputUnitArray', 'Hierarchical', 'ListModel', 'OutputUnit', 'FieldDefs', 'Root', 'Flag']
+Node Properties1 SCHEMA:
 properties:
-      Flag:
-        $ref: '#/$defs/Flag'
-      Hierarchical:
-        $ref: '#/$defs/Hierarchical'
-      ListModel:
-        $ref: '#/$defs/ListModel'
-      OutputUnit:
-        $ref: '#/$defs/OutputUnit'
-      OutputUnitArray:
-        $ref: '#/$defs/OutputUnitArray'
+      root:
+        $ref: '#/$defs/Root'
     required:
-    - Flag
-    - Hierarchical
-    - ListModel
-    - OutputUnit
-    - OutputUnitArray
-    title: FieldDefs
+    - root
+    title: Properties1
+    type: object
+    
+Node OutputUnitArray SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties4'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: OutputUnitArray
+    type: object
+    
+Node Hierarchical SCHEMA:
+properties:
+      properties:
+        $ref: '#/$defs/Properties1'
+      required:
+        items:
+          type: string
+        title: Required
+        type: array
+      title:
+        title: Title
+        type: string
+      type:
+        title: Type
+        type: string
+    required:
+    - properties
+    - required
+    - title
+    - type
+    title: Hierarchical
     type: object
     
 Node ListModel SCHEMA:
@@ -72,36 +108,25 @@ properties:
     title: OutputUnit
     type: object
     
-Node Properties1 SCHEMA:
+Node FieldDefs SCHEMA:
 properties:
-      root:
-        $ref: '#/$defs/Root'
+      Flag:
+        $ref: '#/$defs/Flag'
+      Hierarchical:
+        $ref: '#/$defs/Hierarchical'
+      ListModel:
+        $ref: '#/$defs/ListModel'
+      OutputUnit:
+        $ref: '#/$defs/OutputUnit'
+      OutputUnitArray:
+        $ref: '#/$defs/OutputUnitArray'
     required:
-    - root
-    title: Properties1
-    type: object
-    
-Node Hierarchical SCHEMA:
-properties:
-      properties:
-        $ref: '#/$defs/Properties1'
-      required:
-        items:
-          type: string
-        title: Required
-        type: array
-      title:
-        title: Title
-        type: string
-      type:
-        title: Type
-        type: string
-    required:
-    - properties
-    - required
-    - title
-    - type
-    title: Hierarchical
+    - Flag
+    - Hierarchical
+    - ListModel
+    - OutputUnit
+    - OutputUnitArray
+    title: FieldDefs
     type: object
     
 Node Root SCHEMA:
@@ -137,28 +162,5 @@ properties:
     title: Flag
     type: object
     
-Node OutputUnitArray SCHEMA:
-properties:
-      properties:
-        $ref: '#/$defs/Properties4'
-      required:
-        items:
-          type: string
-        title: Required
-        type: array
-      title:
-        title: Title
-        type: string
-      type:
-        title: Type
-        type: string
-    required:
-    - properties
-    - required
-    - title
-    - type
-    title: OutputUnitArray
-    type: object
-    
-Edges: [('FieldDefs', 'Flag'), ('FieldDefs', 'Hierarchical'), ('FieldDefs', 'ListModel'), ('FieldDefs', 'OutputUnit'), ('FieldDefs', 'OutputUnitArray'), ('Properties1', 'Root'), ('Hierarchical', 'Properties1')]
+Edges: [('Properties1', 'Root'), ('Hierarchical', 'Properties1'), ('FieldDefs', 'Flag'), ('FieldDefs', 'Hierarchical'), ('FieldDefs', 'ListModel'), ('FieldDefs', 'OutputUnit'), ('FieldDefs', 'OutputUnitArray')]
 Inbound Edges: []

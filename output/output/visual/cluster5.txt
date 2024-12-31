@@ -1,0 +1,103 @@
+### Renaming and Improving Variable Names
+
+1. **Cluster 6** → **JSONSchemaSubgraph**
+2. **Nodes** → **SchemaComponents**
+3. **Edge** → **Relationships**
+4. **Node Items SCHEMA** → **ItemsDefinition**
+5. **Hierarchical** → **ContainerProperties**
+6. **OutputUnitArray** → **ArrayOfUnits**
+7. **ListModel** → **ListStructure**
+8. **FieldDefs** → **SchemaFields**
+9. **Properties4** → **TopLevelProperties**
+10. **Flag** → **BooleanOptions**
+11. **Root1** → **BaseNode**
+
+### Visualization of Data Structure
+
+For a clear visualization, consider using **Graphviz** or any other graph-based diagram tool to represent the nodes and relationships.
+
+Here’s an example using Graphviz:
+
+```dot
+digraph G {
+    JSONSchemaSubgraph [label="JSON Schema Subgraph"];
+    
+    ItemsDefinition -> ContainerProperties;
+    FieldDefs -> BooleanOptions;
+    FieldDefs -> ContainerProperties;
+    FieldDefs -> ListStructure;
+    FieldDefs -> ArrayOfUnits;
+    TopLevelProperties -> Root1;
+    Root1 -> ItemsDefinition;
+}
+```
+
+### Allowing User to Edit Data
+
+To allow the user to edit this data structure, consider creating an interactive interface using frameworks like **Streamlit** or **Panel** in Python. Below is a simple example using Streamlit:
+
+```python
+import streamlit as st
+from pydantic import BaseModel
+
+class Node(BaseModel):
+    title: str
+    type: str
+    properties: dict = None
+    required: list = None
+    ref: str = None
+    items: str = None
+
+# Define the schema components
+items_definition = Node(title="Items", type="object", properties={"$ref": {"title": "$Ref", "type": "string"}}, required=["$ref"])
+container_properties = Node(title="ContainerProperties", type="object", properties={}, required=["properties", "required", "title", "type"], items=None)
+array_of_units = Node(title="ArrayOfUnits", type="object", properties={"properties": {"$ref": "#/$defs/Properties4"}}, required=["properties", "required", "title", "type"])
+list_structure = Node(title="ListStructure", type="object", properties={}, required=["properties", "required", "title", "type"], items=None)
+schema_fields = Node(title="SchemaFields", type="object", properties={"Flag": {"$ref": "#/$defs/BooleanOptions"}, "Hierarchical": {"$ref": "#/$defs/ContainerProperties"}, "ListModel": {"$ref": "#/$defs/ListStructure"}, "OutputUnitArray": {"$ref": "#/$defs/ArrayOfUnits"}}, required=["Flag", "Hierarchical", "ListModel", "OutputUnitArray"])
+top_level_properties = Node(title="TopLevelProperties", type="object", properties={"root": {"$ref": "#/$defs/BaseNode"}}, required=["root"], items=None)
+boolean_options = Node(title="BooleanOptions", type="object", properties={}, required=["properties", "required", "title", "type"])
+base_node = Node(title="BaseNode", type="object", properties={"items": {"$ref": "#/$defs/ItemsDefinition"}, "title": {"title": "Title", "type": "string"}, "type": {"title": "Type", "type": "string"}}}, required=["items", "title", "type"])
+
+# Create a dictionary to hold the nodes
+schema_components = {
+    "ItemsDefinition": items_definition,
+    "ContainerProperties": container_properties,
+    "ArrayOfUnits": array_of_units,
+    "ListStructure": list_structure,
+    "SchemaFields": schema_fields,
+    "TopLevelProperties": top_level_properties,
+    "BooleanOptions": boolean_options,
+    "BaseNode": base_node
+}
+
+# Streamlit app to edit the nodes
+st.title("JSON Schema Subgraph Editor")
+for node_name, node in schema_components.items():
+    st.write(f"Editing {node_name}:")
+    with st.form(key=node_name):
+        node_dict = node.dict()
+        for key, value in node_dict.items():
+            if isinstance(value, dict) and '$ref' in value:
+                st.text_input(key, value['$ref'])
+            elif isinstance(value, str):
+                st.text_input(key, value)
+            else:
+                st.write(f"{key}: {value}")
+        if st.form_submit_button("Update"):
+            # Update the node dictionary with new values
+            pass
+
+st.write("Relationships:")
+edges = [("OutputUnitArray", "TopLevelProperties"), ("SchemaFields", "BooleanOptions"), ("SchemaFields", "ContainerProperties"), ("SchemaFields", "ListStructure"), ("SchemaFields", "ArrayOfUnits"), ("TopLevelProperties", "BaseNode")]
+for edge in edges:
+    st.write(f"{edge[0]} -> {edge[1]}")
+```
+
+### Explanation
+
+- **Streamlit**: Used to create a user-friendly interface for editing the JSON Schema nodes.
+- **Pydantic Models**: The `Node` model defines the structure of each node.
+- **Dictionary for Components**: Holds all the schema components for easy access and manipulation.
+
+This setup allows users to interactively edit the properties of each node, making it easier to manage and understand the JSON Schema subgraph.
+

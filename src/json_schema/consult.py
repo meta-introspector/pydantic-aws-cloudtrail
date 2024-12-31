@@ -21,6 +21,8 @@ def generate_expanded_prelude(framework="Pydantic", goal="Meta-model of JSON Sch
 This cluster represents a localized subgraph of the JSON Schema. The nodes are schema components, modeled using {framework}, 
 and the edges indicate the relationships (e.g., references, containment) between these components. The goal is to construct 
 a meta-model of the JSON Schema for deeper analysis, validation, or transformation.
+
+    Your task is to reflect over this chunk, first of all, what could we rename to make it more clear, how can we improve the names of the variables and why. How would you visualize this data structure? How would you allow the user to edit this data?
 """
     return prelude
 
