@@ -1,3 +1,67 @@
+"""
+### High-Level Description of the Algorithm
+
+The `consult.py` script processes JSON Schema definitions and generates documentation files with preludes, then executes a specified script on the generated files and captures the output.
+
+#### Steps:
+
+1. **Import Necessary Modules**:
+   - Imports libraries for argument parsing, YAML processing, JSON Schema handling, code generation, graph processing, template rendering, and subprocess management.
+
+2. **Define Helper Functions**:
+   - `generate_schema_entry_prelude(entry_name, framework, template_path)`: Generates preludes for schema entries using templates.
+   - `generate_expanded_prelude(framework, goal, template_path)`: Generates preludes for expanded clusters using templates.
+   - `extract(x)`: Recursively extracts values from nested structures (strings, lists, dictionaries).
+
+3. **Main Function: print_json_schema**:
+   - **Load and Parse JSON Schema**:
+     - Loads JSON Schema definitions from the `model` and `meta` modules.
+     - Constructs a directed graph representing schema components and their relationships.
+   - **Cluster Analysis**:
+     - Creates clusters of schema components based on depth and size constraints.
+     - Builds a cluster graph and identifies inbound edges.
+   - **Generate Documentation Files**:
+     - Iterates through clusters and generates documentation files for each combination of prelude sections and schema entry preludes.
+     - Replaces placeholder names with actual cluster node names.
+   - **Execute Subprocess**:
+     - Executes a specified script (`script_name`) on each generated documentation file.
+     - Captures the output, error output, and return code of the subprocess.
+     - Prints the subprocess results.
+
+4. **Main Execution**:
+   - Uses `argparse` to handle command-line arguments.
+   - Calls `print_json_schema` with the provided arguments.
+
+#### Usage:
+
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/meta-introspector/pydantic-aws-cloudtrail.git
+   cd pydantic-aws-cloudtrail
+   ```
+
+2. **Install Dependencies**:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+3. **Prepare Templates**:
+   - Ensure that entry and prelude template files are available.
+
+4. **Run the Script**:
+   ```sh
+   python src/json_schema/consult.py \
+       --output_path output/ \
+       --framework Pydantic \
+       --goal "Meta-model of JSON Schema" \
+       --entry_template_paths path/to/entry_template1 path/to/entry_template2 \
+       --prelude_template_paths path/to/prelude_template1 path/to/prelude_template2 \
+       --script_name path/to/your_script.py
+   ```
+
+This script automates the generation of detailed documentation for JSON Schema components, facilitating deeper analysis and validation through structured preludes and clustering.
+"""
+         
 import argparse
 import yaml
 import json_schema.model as model
