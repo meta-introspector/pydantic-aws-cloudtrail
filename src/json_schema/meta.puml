@@ -1,0 +1,207 @@
+@startuml
+
+class Valid {
+    +title: str
+    +type: str
+}
+
+class Properties {
+    +valid: Valid
+}
+
+class Flag {
+    +properties: Properties
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+class Root {
+    +field_ref: str
+}
+
+class Properties1 {
+    +root: Root
+}
+
+class Hierarchical {
+    +properties: Properties1
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+class Details {
+    +field_ref: str
+}
+
+class Properties2 {
+    +valid: Valid
+    +details: Details
+}
+
+class ListModel {
+    +properties: Properties2
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+class EvaluationPath {
+    +title: str
+    +type: str
+}
+
+class SchemaLocation {
+    +format: str
+    +min_length: int
+    +title: str
+    +type: str
+}
+
+class InstanceLocation {
+    +title: str
+    +type: str
+}
+
+class AnyOfItem {
+    +field_ref: str
+    +type: str
+}
+
+class Details1 {
+    +any_of: List[AnyOfItem]
+    +default: None
+}
+
+class Annotations {
+    +any_of: List[AnyOfItem1]
+    +default: None
+    +title: str
+}
+
+class DroppedAnnotations {
+    +any_of: List[AnyOfItem1]
+    +default: None
+    +title: str
+}
+
+class AdditionalProperties {
+    +type: str
+}
+
+class AnyOfItem3 {
+    +additional_properties: AdditionalProperties
+    +type: str
+}
+
+class Errors {
+    +any_of: List[AnyOfItem3]
+    +default: None
+    +title: str
+}
+
+class Properties3 {
+    +valid: Valid
+    +evaluation_path: EvaluationPath
+    +schema_location: SchemaLocation
+    +instance_location: InstanceLocation
+    +details: Details1
+    +annotations: Annotations
+    +dropped_annotations: DroppedAnnotations
+    +errors: Errors
+}
+
+class OutputUnit {
+    +properties: Properties3
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+class Items {
+    +field_ref: str
+}
+
+class Root1 {
+    +items: Items
+    +title: str
+    +type: str
+}
+
+class Properties4 {
+    +root: Root1
+}
+
+class OutputUnitArray {
+    +properties: Properties4
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+class FieldDefs {
+    +flag: Flag
+    +hierarchical: Hierarchical
+    +list_model: ListModel
+    +output_unit: OutputUnit
+    +output_unit_array: OutputUnitArray
+}
+
+class AnyOfItem4 {
+    +field_ref: str
+}
+
+class Root2 {
+    +any_of: List[AnyOfItem4]
+    +description: str
+    +title: str
+}
+
+class Properties5 {
+    +root: Root2
+}
+
+class Model {
+    +field_defs: FieldDefs
+    +properties: Properties5
+    +required: List[str]
+    +title: str
+    +type: str
+}
+
+Properties --|> Valid
+Flag --|> Properties
+Properties1 --|> Root
+Hierarchical --|> Properties1
+Properties2 --|> Valid
+Properties2 --|> Details
+ListModel --|> Properties2
+Details1 --|> AnyOfItem
+Annotations --|> AnyOfItem1
+DroppedAnnotations --|> AnyOfItem1
+AnyOfItem3 --|> AdditionalProperties
+Errors --|> AnyOfItem3
+Properties3 --|> Valid
+Properties3 --|> EvaluationPath
+Properties3 --|> SchemaLocation
+Properties3 --|> InstanceLocation
+Properties3 --|> Details1
+Properties3 --|> Annotations
+Properties3 --|> DroppedAnnotations
+Properties3 --|> Errors
+OutputUnit --|> Properties3
+Root1 --|> Items
+Properties4 --|> Root1
+OutputUnitArray --|> Properties4
+FieldDefs --|> Flag
+FieldDefs --|> Hierarchical
+FieldDefs --|> ListModel
+FieldDefs --|> OutputUnit
+FieldDefs --|> OutputUnitArray
+Root2 --|> AnyOfItem4
+Properties5 --|> Root2
+Model --|> FieldDefs
+Model --|> Properties5
+
+@enduml
